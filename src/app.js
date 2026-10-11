@@ -172,7 +172,7 @@ $('#folStart').onclick=()=>open(0);
 $('#folPrev').onclick=e=>{e.stopPropagation();go(cur-1)};
 $('#folNext').onclick=e=>{e.stopPropagation();go(cur+1)};
 $('#folClose').onclick=close;
-$('#folFs').onclick=e=>{e.stopPropagation();if(!document.fullscreenElement)v.requestFullscreen?.();else document.exitFullscreen?.();};
+$('#folFs').onclick=e=>{e.stopPropagation();const fe=document.fullscreenElement||document.webkitFullscreenElement;if(!fe){(v.requestFullscreen||v.webkitRequestFullscreen||function(){}).call(v);}else{(document.exitFullscreen||document.webkitExitFullscreen).call(document);}};
 im.onclick=e=>{const r=im.getBoundingClientRect();go(e.clientX>r.left+r.width/3?cur+1:cur-1);};
 addEventListener("keydown",e=>{if(!v.classList.contains("on"))return;if(["ArrowRight","PageDown"," ","Enter"].includes(e.key)){e.preventDefault();go(cur+1)}else if(["ArrowLeft","PageUp","Backspace"].includes(e.key)){e.preventDefault();go(cur-1)}else if(e.key==="Escape"){close()}});
 let tx=null;v.addEventListener("touchstart",e=>tx=e.touches[0].clientX,{passive:true});v.addEventListener("touchend",e=>{if(tx===null)return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50)go(d<0?cur+1:cur-1);tx=null;});

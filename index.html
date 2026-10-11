@@ -177,7 +177,8 @@ label.l{display:block;font-weight:700;color:var(--dark);margin:14px 0 6px}
 .fol-grid span{display:block;padding:6px 10px}
 #folView{position:fixed;inset:0;z-index:90;background:#120126;display:none;flex-direction:column;align-items:center;justify-content:center}
 #folView.on{display:flex}
-#folView img{max-width:100vw;max-height:calc(100vh - 64px);object-fit:contain;user-select:none}
+#folView img{display:block;width:min(100vw, calc((100vh - 64px) * 16 / 9));width:min(100vw, calc((100dvh - 64px) * 16 / 9));height:auto;aspect-ratio:16/9;max-width:none;max-height:none;object-fit:contain;user-select:none;flex:none}
+#folView:fullscreen img,#folView:-webkit-full-screen img{width:min(100vw, calc((100vh - 64px) * 16 / 9))}
 #folBar{position:absolute;left:0;right:0;bottom:0;height:58px;display:flex;align-items:center;justify-content:center;gap:10px;color:#fff;font-weight:700;font-size:15px}
 #folBar button{background:transparent;border:1px solid var(--violet-2);color:#fff;border-radius:10px;padding:8px 16px;font-weight:700;font-size:18px;cursor:pointer;min-width:48px;min-height:44px}
 #folClose{position:absolute;top:10px;right:12px;background:transparent;border:0;color:#fff;font-size:34px;cursor:pointer;line-height:1;width:48px;height:48px}
@@ -964,7 +965,7 @@ $('#folStart').onclick=()=>open(0);
 $('#folPrev').onclick=e=>{e.stopPropagation();go(cur-1)};
 $('#folNext').onclick=e=>{e.stopPropagation();go(cur+1)};
 $('#folClose').onclick=close;
-$('#folFs').onclick=e=>{e.stopPropagation();if(!document.fullscreenElement)v.requestFullscreen?.();else document.exitFullscreen?.();};
+$('#folFs').onclick=e=>{e.stopPropagation();const fe=document.fullscreenElement||document.webkitFullscreenElement;if(!fe){(v.requestFullscreen||v.webkitRequestFullscreen||function(){}).call(v);}else{(document.exitFullscreen||document.webkitExitFullscreen).call(document);}};
 im.onclick=e=>{const r=im.getBoundingClientRect();go(e.clientX>r.left+r.width/3?cur+1:cur-1);};
 addEventListener("keydown",e=>{if(!v.classList.contains("on"))return;if(["ArrowRight","PageDown"," ","Enter"].includes(e.key)){e.preventDefault();go(cur+1)}else if(["ArrowLeft","PageUp","Backspace"].includes(e.key)){e.preventDefault();go(cur-1)}else if(e.key==="Escape"){close()}});
 let tx=null;v.addEventListener("touchstart",e=>tx=e.touches[0].clientX,{passive:true});v.addEventListener("touchend",e=>{if(tx===null)return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50)go(d<0?cur+1:cur-1);tx=null;});

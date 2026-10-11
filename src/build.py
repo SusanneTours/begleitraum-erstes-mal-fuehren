@@ -1,7 +1,7 @@
 import pathlib
 r=pathlib.Path(__file__).parent
-css=open('/tmp/claude-0/-home-claude/88d19f3e-f7e3-5f34-a7b4-c0d4a0c4e6fc/scratchpad/base.css').read() if pathlib.Path('/tmp/claude-0/-home-claude/88d19f3e-f7e3-5f34-a7b4-c0d4a0c4e6fc/scratchpad/base.css').exists() else (r/'base.css').read_text()
-(r/'base.css').write_text(css)
+css=(r/'base.css').read_text()
+
 css=css.replace('</style>',(r/'extra.css').read_text()+'\n</style>')
 head='''<!doctype html>
 <html lang="de">
