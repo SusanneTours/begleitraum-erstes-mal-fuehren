@@ -1,0 +1,57 @@
+/* Ergänzungen: Das erste Mal führen */
+.daytag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:var(--violet-4);color:var(--dark);border-radius:999px;padding:2px 9px;margin-left:6px;vertical-align:middle}
+.curve{width:100%;height:auto;display:block;margin:4px 0 6px}
+.phase{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;padding:12px 0;border-top:1px solid var(--line)}
+.phase:first-of-type{border-top:0}
+.phase .num{width:34px;height:34px;border-radius:50%;background:var(--lav);color:var(--violet);font-weight:700;display:grid;place-items:center;font-size:15px}
+.phase h3{font-size:17px;margin:4px 0 2px}
+.phase p{margin:0;font-size:15px}
+.bridge{background:var(--dark);color:#fff;border-radius:12px;padding:12px 16px;margin:6px 0;font-size:15px}
+.bridge b{color:var(--violet-4)}
+.sw{display:grid;grid-template-columns:28px 1fr;grid-template-rows:1fr 28px;gap:6px;margin:6px 0 4px}
+.sw .ax-y{writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;font-size:12.5px;font-weight:700;color:var(--ink-soft)}
+.sw .ax-x{grid-column:2;text-align:center;font-size:12.5px;font-weight:700;color:var(--ink-soft)}
+.sw .q{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sw .q>div{border-radius:12px;padding:12px 14px;min-height:92px;font-size:14.5px}
+.sw .q b{display:block;font-size:15px;margin-bottom:4px}
+.sw .qa{background:#FEF0CD}.sw .qa b{color:#86640C}
+.sw .qb{background:#E3F4E4}.sw .qb b{color:#035407}
+.sw .qc{background:#FAE6E6}.sw .qc b{color:#CB0101}
+.sw .qd{background:var(--lav)}.sw .qd b{color:var(--violet)}
+.sw .chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.sw .chips span{background:#fff;border-radius:999px;padding:2px 9px;font-weight:700;font-size:13px;color:var(--dark)}
+details.more{background:#fff;border:1px solid var(--line);border-radius:var(--r);margin:0 0 16px}
+details.more summary{cursor:pointer;padding:16px 20px;font-weight:700;color:var(--violet);list-style:none}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary::before{content:"＋ ";}
+details.more[open] summary::before{content:"－ ";}
+details.more .b{padding:0 20px 16px}
+.ego{display:grid;gap:10px;margin:0 0 16px}
+.ego>div{border-radius:14px;padding:14px 16px;background:#fff;border:1px solid var(--line);display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:start}
+.ego .k{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-weight:700;color:#fff;font-size:22px}
+.ego h3{font-size:17px;margin:2px 0 4px}
+.ego p{margin:0 0 4px;font-size:15px}
+.ego .say{font-size:14.5px;color:var(--ink-soft)}
+.ok4{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:6px 0}
+.ok4 div{border-radius:12px;padding:12px 14px;font-size:14.5px;background:#F4F1F8}
+.ok4 b{display:block;font-size:15px;margin-bottom:2px}
+.ok4 .yes{background:var(--violet);color:#fff}
+.ok4 .yes b{color:#fff}
+.trans{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 12px}
+.trans div{border-radius:12px;padding:12px 14px;font-size:15px}
+.trans .from{background:#FAE6E6}
+.trans .to{background:#E3F4E4}
+.trans small{display:block;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:4px;color:var(--ink-soft)}
+.grow{display:grid;gap:10px;margin:0 0 16px}
+.grow>div{display:grid;grid-template-columns:64px 1fr;gap:14px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;align-items:start}
+.grow .L{width:64px;height:64px;border-radius:14px;background:var(--violet);color:#fff;font-size:30px;font-weight:700;display:grid;place-items:center}
+.grow h3{font-size:17px;margin:2px 0 4px}
+.grow ul{margin:4px 0 0;padding-left:1.1em;font-size:15px}
+.drei{display:grid;gap:10px;margin:0 0 16px}
+.drei>div{background:var(--dark);color:#fff;border-radius:14px;padding:16px 18px}
+.drei b{display:block;color:var(--violet-4);font-size:20px;margin-bottom:4px}
+.drei p{margin:0;font-size:15px;color:#EDE5FA}
+.drei q{display:block;margin-top:8px;font-weight:700;color:#fff;quotes:"„" "“"}
+.korr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0 0 16px}
+.korr .card{margin:0;border-top:5px solid var(--violet)}
+@media (max-width:860px){.korr{grid-template-columns:1fr}.trans{grid-template-columns:1fr}}
