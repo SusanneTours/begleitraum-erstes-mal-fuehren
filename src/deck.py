@@ -3,7 +3,7 @@ import copy, sys
 from pptx import Presentation
 from lxml import etree
 
-SRC = '/home/claude/uebungsbibliothek/trainerraum/crashkurs-laterale-fuehrung/druck/Crashkurs_Laterale_Fuehrung_Uebungsfolien.pptx'
+SRC = '/home/claude/erstes-mal-fuehren/src/vorlage_haufe.pptx'
 MEDIA = '/tmp/claude-0/-home-claude/88d19f3e-f7e3-5f34-a7b4-c0d4a0c4e6fc/scratchpad/pptx/ppt/media/'
 OUT = sys.argv[1] if len(sys.argv) > 1 else 'Das_erste_Mal_fuehren_Folien.pptx'
 A = '{http://schemas.openxmlformats.org/drawingml/2006/main}'
@@ -266,7 +266,7 @@ def need_detail(i, img):
     tbox(s, 9.53, 4.65, 2.75, 1.9, [('Woran man merkt, dass es fehlt', 14, RGBColor(0xCB, 0x01, 0x01), True, 0), (fehlt, 14, DARK, False, 6)])
 
 # ---------- Inhalt ----------
-haufe_title('Das erste Mal führen 1', 'Vom Rollenwechsel bis zu ersten Führungsgesprächen: dein Fundament für einen erfolgreichen Start in die Führung', 'image18.jpg')
+haufe_title('Das erste Mal führen 1', 'Vom Rollenwechsel bis zu ersten Führungsgesprächen: dein Fundament für einen erfolgreichen Start in die Führung', 'image10.jpg')
 trainer()
 agenda('Tag 1', [('09:00', 'Ankommen'), ('09:45', 'Die Veränderungskurve'), ('10:30', 'Perspektivwechsel'),
                  ('11:30', 'Erwartungen klären'), ('13:30', 'Dein Führungskorridor'), ('15:30', 'Fünf Grundbedürfnisse'),
@@ -433,5 +433,10 @@ ids = list(sldIdLst)
 for sid in ids[:len(orig)]:
     prs.part.drop_rel(sid.rId)
     sldIdLst.remove(sid)
+# Keine Foliennummern
+for _s in prs.slides:
+    for _sh in list(_s.shapes):
+        if 'Slide Number' in _sh.name or 'Foliennummer' in _sh.name:
+            _sh._element.getparent().remove(_sh._element)
 prs.save(OUT)
 print('Folien:', len(prs.slides))
