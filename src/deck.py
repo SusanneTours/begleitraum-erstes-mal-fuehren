@@ -273,9 +273,9 @@ agenda('Tag 1', [('09:00', 'Ankommen'), ('09:45', 'Die Veränderungskurve'), ('1
                  ('16:40', 'Tagesabschluss'), ('17:00', 'Ende')],
        '10:15-10:30 Uhr, 15:15-15:30 Uhr', '12:30-13:30 Uhr')
 box('Ankommen im Raum', 'Stellt euch im Halbkreis auf, sortiert nach eurer Führungserfahrung. Ganz links steht, wer noch in Vorbereitung auf die Rolle oder ganz frisch dabei ist. Ganz rechts steht, wer am längsten führt.',
-    'Sprecht miteinander, bis die Reihenfolge stimmt.', 'Wir hören einige Stimmen: Seit wann führst du, und wen?', 'ca. 10 Minuten')
-box('Deine Erwartungen', 'Schreib auf eine Karte, was wir in diesen zwei Tagen besprechen sollten:',
-    'Was muss hier passieren, damit sich die zwei Tage für dich wirklich gelohnt haben?', 'Formuliere es als Hashtag, zum Beispiel #KritikgesprächeFühren. Ein bis drei Hashtags pro Person, dann an die Pinnwand.', 'ca. 10 Minuten')
+    'Sprecht miteinander, bis die Reihenfolge stimmt.', None, 'ca. 5 Minuten')
+box('Wer bist du, was erwartest du?', 'Stell dich der Gruppe kurz vor:',
+    'Welche Rolle hast du? Wie viele Mitarbeitende führst du? Was muss hier passieren, damit sich die zwei Tage für dich wirklich gelohnt haben?', 'Schreib deine Erwartungen dabei als Hashtag an das Flipchart, zum Beispiel #KritikgesprächeFühren.', 'ca. 1 bis 2 Minuten pro Person')
 task('group', 'Was ist Führung?', 'image11.jpg',
      [('p', 'Wir falten den Halbkreis: Die Person ganz links geht zur Person ganz rechts, und so weiter. So sprechen immer wenig und viel Erfahrung miteinander.'),
       ('b', 'Führen heißt für mich …'), ('b', 'Wer war deine beste Führungskraft, und was hat sie ausgemacht?'),
