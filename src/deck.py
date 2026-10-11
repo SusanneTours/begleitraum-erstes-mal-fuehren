@@ -1,4 +1,4 @@
-"""Baut die Teilnehmerfolien "Das erste Mal führen" aus der Haufe-Vorlage des Crashkurses."""
+"""Baut die Teilnehmerfolien "Das erste Mal führen 1" aus der Haufe-Vorlage des Crashkurses."""
 import copy, sys
 from pptx import Presentation
 from lxml import etree
@@ -168,8 +168,105 @@ def end(t, sub):
     s = dup('end'); fill(shape(s, 'Title 2'), [(0, t), (1, sub)])
 
 
+
+# ---------- freie Formen ----------
+from pptx.util import Inches, Pt
+from pptx.dml.color import RGBColor
+from pptx.enum.shapes import MSO_SHAPE
+from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
+PURPLE = RGBColor(0x6F, 0x01, 0xF5); DARK = RGBColor(0x19, 0x03, 0x33); WHITE = RGBColor(0xFF, 0xFF, 0xFF)
+SOFT = RGBColor(0x5B, 0x4F, 0x72); LAV = RGBColor(0xF3, 0xE7, 0xFF); ROSE = RGBColor(0xFA, 0xE6, 0xE6)
+
+def drop(slide, *names):
+    for sh in list(slide.shapes):
+        if sh.name in names:
+            sh._element.getparent().remove(sh._element)
+
+def tbox(slide, x, y, w, h, paras, anchor=None):
+    """paras: Liste von (text, groesse, farbe, fett, abstand_vorher)."""
+    tb = slide.shapes.add_textbox(Inches(x), Inches(y), Inches(w), Inches(h))
+    tf = tb.text_frame; tf.word_wrap = True
+    tf.margin_left = tf.margin_right = tf.margin_top = tf.margin_bottom = 0
+    if anchor: tf.vertical_anchor = anchor
+    for i, (t, size, color, bold, before) in enumerate(paras):
+        p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
+        p.space_before = Pt(before)
+        r = p.add_run(); r.text = t; r.font.size = Pt(size); r.font.bold = bold; r.font.color.rgb = color
+    return tb
+
+def card(slide, x, y, w, h, color, radius=0.06):
+    c = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(x), Inches(y), Inches(w), Inches(h))
+    c.adjustments[0] = radius; c.fill.solid(); c.fill.fore_color.rgb = color; c.line.fill.background(); c.shadow.inherit = False
+    return c
+
+def mirrored(img):
+    im = Image.open(MEDIA + img).convert('RGB').resize((1600, 900)).transpose(Image.FLIP_LEFT_RIGHT)
+    name = SHIFT + 'mirror_' + os.path.splitext(img)[0] + '.jpg'; im.save(name, quality=88); return name
+
+LOGO = None
+for _sh in orig[0].shapes:
+    if _sh.name == 'Haufe Akademie Logo':
+        LOGO = copy.deepcopy(_sh._element)
+
+def haufe_title(t, sub, img):
+    """Titelfolie nach Haufe-Vorlage: grosses Foto, violetter Kasten unten, Name und Hinweis Vertragspartnerin."""
+    s = dup('solo')
+    photo(s, img)
+    drop(s, 'Title 4', 'Graphic 8', 'Graphic 18', 'Graphic 7', 'TextBox 14', 'Footer Placeholder 3', 'Slide Number Placeholder 5')
+    box = shape(s, 'Rounded Rectangle 1')
+    box.left, box.top, box.width, box.height = Inches(0.62), Inches(4.0), Inches(12.1), Inches(2.92)
+    tbox(s, 1.05, 4.32, 11.2, 2.5, [(t, 44, WHITE, False, 0), (sub, 20, WHITE, False, 8),
+                                    ('Susanne Tours', 16, WHITE, False, 26), ('Vertragspartnerin der Haufe Akademie', 16, WHITE, False, 2)])
+    if LOGO is not None:
+        lg = copy.deepcopy(LOGO)
+        xf = lg.find('.//' + A + 'xfrm')
+        xf.find(A + 'off').set('x', str(int(Inches(10.15)))); xf.find(A + 'off').set('y', str(int(Inches(0.55))))
+        xf.find(A + 'ext').set('cx', str(int(Inches(2.6)))); xf.find(A + 'ext').set('cy', str(int(Inches(2.6) * 351846 / 2833785)))
+        s.shapes._spTree.append(lg)
+
+NEEDS5 = [
+ ('Bindung', 'Ich gehöre dazu und kann mich auf andere verlassen.', 'Zugehörigkeit, Verbundenheit und Unterstützung durch andere Menschen. Erfüllte Bindung gibt Sicherheit und Vertrauen.', 'Echtes Interesse aneinander, gemeinsame Rituale, niemand wird übergangen.', 'Rückzug, Grüppchen, Gespräche nur noch über Dritte.'),
+ ('Orientierung und Kontrolle', 'Ich verstehe, was passiert, und kann mitgestalten.', 'Klarheit, Stabilität und das Gefühl, Situationen verstehen und beeinflussen zu können.', 'Klare Zuständigkeiten, früh informieren, Entscheidungen erklären.', 'Gerüchte, viele Rückfragen, Festhalten am Alten.'),
+ ('Selbstwertschutz und Selbstwerterhöhung', 'Ich werde gesehen und kann wachsen.', 'Anerkennung, Respekt und Wertschätzung. Und die Möglichkeit, an Herausforderungen zu wachsen.', 'Anerkennung konkret aussprechen, Kritik unter vier Augen, Neues zutrauen.', 'Rechtfertigen, Verteidigen, Kränkung, Rückzug aus Verantwortung.'),
+ ('Lustgewinn und Unlustvermeidung', 'Die Arbeit macht auch Freude.', 'Angenehme Erfahrungen suchen, Belastendes vermeiden. Das sorgt für Wohlbefinden und Gleichgewicht.', 'Erfolge feiern, Ärgernisse abbauen, Humor zulassen.', 'Lustlosigkeit, Dienst nach Vorschrift, Gereiztheit.'),
+ ('Kohärenz', 'Was ich tue, ergibt Sinn.', 'Sinn, Zusammenhang und Stimmigkeit. Was ich tue, passt zu meinen Werten.', 'Das Wozu klären, Widersprüche offen ansprechen.', 'Zynismus, „Das bringt doch eh nichts“.')]
+
+def needs_overview():
+    s = dup('steps')
+    set_text(shape(s, 'Title 1'), 'Die fünf psychologischen Grundbedürfnisse')
+    keep = {'Title 1', 'Footer Placeholder 3', 'Slide Number Placeholder 4'}
+    for sh in list(s.shapes):
+        if sh.name not in keep:
+            sh._element.getparent().remove(sh._element)
+    tbox(s, 0.45, 1.2, 11.5, 0.8, [('Wenn Menschen gereizt, still oder blockiert reagieren, steckt fast immer ein Bedürfnis dahinter, das gerade nicht erfüllt ist.', 18, SOFT, False, 0)])
+    w, gap, x0 = 2.33, 0.18, 0.45
+    SHORT = ['Bindung', 'Orientierung\nund Kontrolle', 'Selbstwert-\nschutz und\n-erhöhung', 'Lustgewinn\nund Unlust-\nvermeidung', 'Kohärenz']
+    for i, (name, kern, *_r) in enumerate(NEEDS5):
+        name = SHORT[i]
+        x = x0 + i * (w + gap)
+        card(s, x, 2.3, w, 3.9, LAV)
+        o = s.shapes.add_shape(MSO_SHAPE.OVAL, Inches(x + 0.25), Inches(2.6), Inches(0.75), Inches(0.75))
+        o.fill.solid(); o.fill.fore_color.rgb = PURPLE; o.line.fill.background(); o.shadow.inherit = False
+        tf = o.text_frame; tf.margin_left = tf.margin_right = 0; p = tf.paragraphs[0]; p.alignment = PP_ALIGN.CENTER
+        r = p.add_run(); r.text = str(i + 1); r.font.size = Pt(24); r.font.bold = True; r.font.color.rgb = WHITE
+        tbox(s, x + 0.22, 3.6, w - 0.4, 2.5, [(name, 17, DARK, True, 0), (kern, 15, SOFT, False, 10)])
+
+def need_detail(i, img):
+    name, kern, desc, ok, fehlt = NEEDS5[i]
+    s = dup('solo')
+    photo(s, img)
+    drop(s, 'Title 4', 'Graphic 8', 'TextBox 14')
+    box = shape(s, 'Rounded Rectangle 1')
+    box.left, box.top, box.width, box.height = Inches(5.55), Inches(0.95), Inches(7.33), Inches(6.05)
+    box.fill.solid(); box.fill.fore_color.rgb = WHITE
+    tbox(s, 6.0, 1.3, 6.45, 3.0, [(f'GRUNDBEDÜRFNIS {i + 1} VON 5', 12, PURPLE, True, 0), (name, 30, DARK, False, 6),
+                                   (kern, 20, PURPLE, True, 8), (desc, 15, SOFT, False, 10)])
+    card(s, 6.0, 4.45, 3.12, 2.2, LAV); card(s, 9.33, 4.45, 3.12, 2.2, ROSE)
+    tbox(s, 6.2, 4.65, 2.75, 1.9, [('Im Team erfüllt, wenn …', 14, PURPLE, True, 0), (ok, 14, DARK, False, 6)])
+    tbox(s, 9.53, 4.65, 2.75, 1.9, [('Woran man merkt, dass es fehlt', 14, RGBColor(0xCB, 0x01, 0x01), True, 0), (fehlt, 14, DARK, False, 6)])
+
 # ---------- Inhalt ----------
-title('Das erste Mal führen', 'Sicher starten in der neuen Führungsrolle')
+haufe_title('Das erste Mal führen 1', 'Vom Rollenwechsel bis zu ersten Führungsgesprächen: dein Fundament für einen erfolgreichen Start in die Führung', 'image18.jpg')
 trainer()
 agenda('Tag 1', [('09:00', 'Ankommen'), ('09:45', 'Die Veränderungskurve'), ('10:30', 'Perspektivwechsel'),
                  ('11:30', 'Erwartungen klären'), ('13:30', 'Dein Führungskorridor'), ('15:30', 'Fünf Grundbedürfnisse'),
@@ -231,6 +328,9 @@ steps('Deinen Korridor vorstellen', 'Zu zweit', '2 × 10 Min.', [
 pause('coffee', 'Kaffeepause', '15:15 bis 15:30 Uhr', 'image102.png')
 
 chapter(5, 'Fünf Grundbedürfnisse')
+needs_overview()
+for _i, _img in enumerate(['image101.png', mirrored('image17.jpg'), mirrored('image10.jpg'), mirrored('image6.jpg'), mirrored('image11.jpg')]):
+    need_detail(_i, _img)
 task('group', 'Ein Bedürfnis, viele Ideen', 'image6.jpg',
      [('p', 'Jede Gruppe übernimmt ein Grundbedürfnis. Haltet auf eurem Plakat fest:'),
       ('b', 'Woran merke ich im Alltag, dass es bedroht ist?'), ('b', 'Was tue ich ab Montag konkret, um es zu stärken?'),

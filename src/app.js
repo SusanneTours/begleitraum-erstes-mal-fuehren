@@ -3,7 +3,7 @@
 const ERGEBNISSE = [
   // { titel: "Unsere Veränderungskurve", bild: "fotos/kurve.jpg", orte: ["kurve"] },
 ];
-const FOLIEN = 45; // Anzahl der Folienbilder in folien/
+const FOLIEN = 51; // Anzahl der Folienbilder in folien/
 
 /* ---------- Speicher (nur auf diesem Gerät) ---------- */
 const KEY = 'erstes-mal-fuehren-begleitraum-v1';
@@ -56,12 +56,12 @@ document.addEventListener('keydown', e => { if (e.key==='Escape') $('#lightbox')
 
 /* ---------- Bedürfnisse ---------- */
 const NEEDS=[
- {t:"Bindung",hear:"„Interessiert sich hier jemand für mich?“",q:"Gehöre ich dazu? Werde ich gesehen und eingebunden?",fix:"Regelmäßige Einzelgespräche, echtes Interesse an der Person, früh einbinden statt nur informieren."},
- {t:"Orientierung & Kontrolle",hear:"„Was kommt da noch alles?“",q:"Weiß ich, was von mir erwartet wird? Habe ich Einfluss?",fix:"Ziele und Erwartungen klar sagen, Entscheidungen erklären, Spielraum beim Wie lassen."},
- {t:"Selbstwert",hear:"„Das habe ich doch immer gut gemacht.“",q:"Werde ich mit meiner Leistung wahrgenommen und wertgeschätzt?",fix:"Konkret anerkennen, Erfahrung würdigen, Kritik unter vier Augen und ohne Bloßstellen."},
- {t:"Lust & Unlustvermeidung",hear:"„Noch mehr Arbeit, echt jetzt?“",q:"Macht mir die Arbeit Freude? Wird mir unnötiger Ärger erspart?",fix:"Aufgaben nach Stärken verteilen, Hindernisse aus dem Weg räumen, Erfolge gemeinsam feiern."},
- {t:"Stimmigkeit",hear:"„Das passt doch nicht zusammen.“",q:"Passt das, was hier passiert, zu meinen Werten und zu dem, was gesagt wurde?",fix:"Wort halten, Sinn zeigen, Widersprüche offen ansprechen, selbst Vorbild sein."}];
-$('#needs').innerHTML = NEEDS.map((n,i)=>`<div class="need"><span class="k">${i+1} · ${esc(n.t)}</span><span class="hear">${esc(n.hear)}</span><p>${esc(n.q)}</p><div class="help"><b>Das kannst du tun</b>${esc(n.fix)}</div></div>`).join('');
+ {t:"Bindung",hear:"Ich gehöre dazu und kann mich auf andere verlassen.",q:"Zugehörigkeit, Verbundenheit und Unterstützung durch andere Menschen. Erfüllte Bindung gibt Sicherheit und Vertrauen.",fix:"Echtes Interesse aneinander, gemeinsame Rituale, niemand wird übergangen.",miss:"Rückzug, Grüppchen, Gespräche nur noch über Dritte."},
+ {t:"Orientierung und Kontrolle",hear:"Ich verstehe, was passiert, und kann mitgestalten.",q:"Klarheit, Stabilität und das Gefühl, Situationen verstehen und beeinflussen zu können.",fix:"Klare Zuständigkeiten, früh informieren, Entscheidungen erklären.",miss:"Gerüchte, viele Rückfragen, Festhalten am Alten."},
+ {t:"Selbstwertschutz und Selbstwerterhöhung",hear:"Ich werde gesehen und kann wachsen.",q:"Anerkennung, Respekt und Wertschätzung. Und die Möglichkeit, an Herausforderungen zu wachsen.",fix:"Anerkennung konkret aussprechen, Kritik unter vier Augen, Neues zutrauen.",miss:"Rechtfertigen, Verteidigen, Kränkung, Rückzug aus Verantwortung."},
+ {t:"Lustgewinn und Unlustvermeidung",hear:"Die Arbeit macht auch Freude.",q:"Angenehme Erfahrungen suchen, Belastendes vermeiden. Das sorgt für Wohlbefinden und Gleichgewicht.",fix:"Erfolge feiern, Ärgernisse abbauen, Humor zulassen.",miss:"Lustlosigkeit, Dienst nach Vorschrift, Gereiztheit."},
+ {t:"Kohärenz",hear:"Was ich tue, ergibt Sinn.",q:"Sinn, Zusammenhang und Stimmigkeit. Was ich tue, passt zu meinen Werten.",fix:"Das Wozu klären, Widersprüche offen ansprechen.",miss:"Zynismus, „Das bringt doch eh nichts“."}];
+$('#needs').innerHTML = NEEDS.map((n,i)=>`<div class="need"><span class="k">${i+1} · ${esc(n.t)}</span><span class="hear">${esc(n.hear)}</span><p>${esc(n.q)}</p><div class="help"><b>Im Team erfüllt, wenn …</b>${esc(n.fix)}</div><div class="help" style="background:#FAE6E6;margin-top:0"><b style="color:#CB0101">Woran man merkt, dass es fehlt</b>${esc(n.miss)}</div></div>`).join('');
 
 /* ---------- Startplan ---------- */
 const STEPS=["Meine Situation","Mein Team in der Veränderung","Erwartungen klären","Mein Führungskorridor","Fünf Grundbedürfnisse","Meine Matrix","Mein Gespräch","Meine ersten Schritte","Zusammenfassung"];
@@ -128,7 +128,7 @@ function renderWiz(){
   $('#wiz').querySelectorAll('[data-tm]').forEach(inp=>inp.addEventListener(inp.tagName==='SELECT'?'change':'input',()=>{ p.team[inp.dataset.tm][inp.dataset.f]=inp.value; save(); redraw(); }));
   $('#wiz').querySelectorAll('[data-del]').forEach(b=>b.addEventListener('click',()=>{ p.team.splice(+b.dataset.del,1); save(); renderWiz(); }));
   const add=$('#addTm'); if(add) add.addEventListener('click',()=>{ (p.team||(p.team=[])).push({kz:''}); save(); renderWiz(); const ins=$('#wiz').querySelectorAll('[data-f="kz"]'); ins[ins.length-1]?.focus(); });
-  const pdf=$('#pdf'); if(pdf) pdf.addEventListener('click',()=>{ $('#print-area').innerHTML=`<h2>Mein Startplan · Das erste Mal führen</h2>`+summary()+`<p style="margin-top:16px;color:#666">Susanne Tours · susannetours.com</p>`; document.body.classList.add('printing'); window.print(); setTimeout(()=>document.body.classList.remove('printing'),500); });
+  const pdf=$('#pdf'); if(pdf) pdf.addEventListener('click',()=>{ $('#print-area').innerHTML=`<h2>Mein Startplan · Das erste Mal führen 1</h2>`+summary()+`<p style="margin-top:16px;color:#666">Susanne Tours · susannetours.com</p>`; document.body.classList.add('printing'); window.print(); setTimeout(()=>document.body.classList.remove('printing'),500); });
   const cpy=$('#cpy'); if(cpy) cpy.addEventListener('click',()=>{ const d=document.createElement('div'); d.innerHTML=summary(); copy(d.innerText); });
 }
 $('#wPrev').addEventListener('click',()=>{ S.step=Math.max(0,(S.step||0)-1); save(); renderWiz(); window.scrollTo(0,0); });

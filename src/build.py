@@ -9,7 +9,7 @@ head='''<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#190333">
-<title>Begleitraum · Das erste Mal führen</title>
+<title>Begleitraum · Das erste Mal führen 1</title>
 '''
 out=head+css+'\n</head>\n'+(r/'body.html').read_text().split('<footer')[0]+'\n<script>\n'+(r/'app.js').read_text()+'\n</script>\n<footer'+(r/'body.html').read_text().split('<footer',1)[1]+'</body>\n</html>\n'
 (r.parent/'index.html').write_text(out)
