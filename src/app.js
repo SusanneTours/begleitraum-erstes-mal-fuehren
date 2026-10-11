@@ -164,7 +164,7 @@ $('#checklist').querySelectorAll('[data-week]').forEach(c=>c.addEventListener('c
 (function(){const N=FOLIEN,src=i=>"folien/"+String(i+1).padStart(2,"0")+".jpg";let cur=0;
 const g=$('#folGrid');g.innerHTML=Array.from({length:N},(_,i)=>`<button type="button" data-f="${i}"><img loading="lazy" src="${src(i)}" alt="Folie ${i+1}"><span>Folie ${i+1}</span></button>`).join('');
 const v=$('#folView'),im=$('#folImg'),c=$('#folCount');
-function go(n){cur=Math.max(0,Math.min(N-1,n));im.src=src(cur);im.alt="Folie "+(cur+1);c.textContent=(cur+1)+" / "+N;[cur+1,cur-1].forEach(k=>{if(k>=0&&k<N){new Image().src=src(k)}});}
+function go(n){cur=Math.max(0,Math.min(N-1,n));im.src=src(cur);im.alt="Folie "+(cur+1);c.textContent=String(cur+1);[cur+1,cur-1].forEach(k=>{if(k>=0&&k<N){new Image().src=src(k)}});}
 function open(n){v.classList.add("on");document.body.style.overflow="hidden";go(n);}
 function close(){v.classList.remove("on");document.body.style.overflow="";if(document.fullscreenElement)document.exitFullscreen?.();}
 g.addEventListener("click",e=>{const b=e.target.closest("[data-f]");if(b)open(+b.dataset.f);});
