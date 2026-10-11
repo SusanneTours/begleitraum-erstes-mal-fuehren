@@ -3,7 +3,7 @@
 const ERGEBNISSE = [
   // { titel: "Unsere Veränderungskurve", bild: "fotos/kurve.jpg", orte: ["kurve"] },
 ];
-const FOLIEN = 51; // Anzahl der Folienbilder in folien/
+const FOLIEN = 52; // Anzahl der Folienbilder in folien/
 
 /* ---------- Speicher (nur auf diesem Gerät) ---------- */
 const KEY = 'erstes-mal-fuehren-begleitraum-v1';
@@ -84,7 +84,7 @@ function matrix(){
 function stepBody(i){
   const p=P();
   switch(i){
-    case 0: return `<h3>Meine Situation</h3><p class="hint">Ein paar Sätze, damit du später siehst, wo du gestartet bist.</p>${field('rolle','Meine Rolle und mein Team','Ich führe … Personen im Bereich …')}${field('seit','Seit wann bin ich Führungskraft?','zum Beispiel seit 1. September')}${field('herkunft','Woher komme ich?','aus dem eigenen Team, aus einem anderen Bereich, von außen')}${field('anliegen','Was will ich aus diesen zwei Tagen mitnehmen?','',true)}`;
+    case 0: return `<h3>Meine Situation</h3><p class="hint">Ein paar Sätze, damit du später siehst, wo du gestartet bist.</p>${field('rolle','Meine Rolle und mein Team','Ich führe … Personen im Bereich …')}${field('seit','Seit wann bin ich Führungskraft?','zum Beispiel seit 1. September')}${field('herkunft','Woher komme ich?','aus dem eigenen Team, aus einem anderen Bereich, von außen')}${field('fuehrung','Führen heißt für mich …','',true)}${field('anliegen','Was will ich aus diesen zwei Tagen mitnehmen?','Meine Hashtags: #… #…',true)}`;
     case 1: return `<h3>Mein Team in der Veränderung</h3><p class="hint">Denk an die Veränderungskurve.</p>${field('kurve.team','Wo steht mein Team gerade?','zum Beispiel Widerstand, rationale Einsicht …')}${field('kurve.ich','Wo stehe ich selbst?')}${field('kurve.braucht','Was braucht mein Team jetzt von mir?','',true)}`;
     case 2: return `<h3>Erwartungen klären</h3>${field('erw.fragen','Welche Fragen hat mein Team wahrscheinlich?','Urlaub, Homeoffice, Erreichbarkeit, Entscheidungen …',true)}${field('erw.antworten','Meine Antworten darauf','',true,'Und ehrlich: Was weiß ich noch nicht, bis wann kläre ich es?')}${field('erw.ich','Was erwarte ich von meinem Team?','',true)}${field('erw.fk','Was muss ich mit meiner eigenen Führungskraft klären?','',true)}${field('erw.termin','Wann führe ich das Erwartungsgespräch?')}`;
     case 3: return `<h3>Mein Führungskorridor</h3>${field('korr.ziele','1 · Welche Ziele habe ich für meinen Bereich?','',true)}${field('korr.erw','2 · Was erwarte ich, damit wir die Ziele erreichen?','',true)}${field('korr.werte','3 · Welche Werte und Prinzipien gelten für unsere Zusammenarbeit?','',true)}${field('korr.komm','4 · Welche Kommunikation braucht es dafür?','Teamrunde, Einzelgespräche, Kanäle …',true)}`;
@@ -103,7 +103,7 @@ function stepBody(i){
 function line(label,v){ return v?`<p><b>${label}:</b> ${esc(v).replace(/\n/g,'<br>')}</p>`:''; }
 function summary(){
   const p=P(), g=p.g||{}, s=p.s||{};
-  let h=`<h3>Meine Situation</h3>${line('Rolle und Team',p.rolle)}${line('Führungskraft seit',p.seit)}${line('Herkunft',p.herkunft)}${line('Mein Anliegen',p.anliegen)}`;
+  let h=`<h3>Meine Situation</h3>${line('Rolle und Team',p.rolle)}${line('Führungskraft seit',p.seit)}${line('Herkunft',p.herkunft)}${line('Führen heißt für mich',p.fuehrung)}${line('Mein Anliegen',p.anliegen)}`;
   h+=`<h3>Mein Team in der Veränderung</h3>${line('Team',p.kurve?.team)}${line('Ich',p.kurve?.ich)}${line('Was mein Team braucht',p.kurve?.braucht)}`;
   h+=`<h3>Erwartungen</h3>${line('Fragen meines Teams',p.erw?.fragen)}${line('Meine Antworten',p.erw?.antworten)}${line('Was ich erwarte',p.erw?.ich)}${line('Mit meiner Führungskraft klären',p.erw?.fk)}${line('Erwartungsgespräch',p.erw?.termin)}`;
   h+=`<h3>Mein Führungskorridor</h3>${line('Ziele',p.korr?.ziele)}${line('Erwartungen',p.korr?.erw)}${line('Werte und Prinzipien',p.korr?.werte)}${line('Kommunikation',p.korr?.komm)}`;

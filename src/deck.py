@@ -272,13 +272,15 @@ agenda('Tag 1', [('09:00', 'Ankommen'), ('09:45', 'Die Veränderungskurve'), ('1
                  ('11:30', 'Erwartungen klären'), ('13:30', 'Dein Führungskorridor'), ('15:30', 'Fünf Grundbedürfnisse'),
                  ('16:40', 'Tagesabschluss'), ('17:00', 'Ende')],
        '10:15-10:30 Uhr, 15:15-15:30 Uhr', '12:30-13:30 Uhr')
-box('Ankommen im Raum', 'Auf dem Boden siehst du eine Linie. Am einen Ende steht „seit heute“, am anderen „seit über einem Jahr“. Stell dich an die Stelle, die für dich stimmt:',
-    'Seit wann bist du Führungskraft?', 'Wir hören einige Stimmen: Wann hast du dich zum ersten Mal wirklich als Führungskraft gefühlt?', 'ca. 8 Minuten')
-task('group', 'Kennenlernen', 'image11.jpg',
-     [('p', 'Such dir jemanden, den du noch nicht kennst. Stellt euch gegenseitig zwei Fragen:'),
-      ('b', 'Wen führst du, und seit wann?'), ('b', 'Was beschäftigt dich in deiner neuen Rolle gerade am meisten?'),
-      ('p', 'Danach wechselst du die Person. Zum Schluss schreibst du dein wichtigstes Anliegen auf eine Karte.')],
-     '3 Runden à 4 Minuten, Karte 2 Minuten')
+box('Ankommen im Raum', 'Stellt euch im Halbkreis auf, sortiert nach eurer Führungserfahrung. Ganz links steht, wer noch in Vorbereitung auf die Rolle oder ganz frisch dabei ist. Ganz rechts steht, wer am längsten führt.',
+    'Sprecht miteinander, bis die Reihenfolge stimmt.', 'Wir hören einige Stimmen: Seit wann führst du, und wen?', 'ca. 10 Minuten')
+box('Deine Erwartungen', 'Schreib auf eine Karte, was wir in diesen zwei Tagen besprechen sollten:',
+    'Was muss hier passieren, damit sich die zwei Tage für dich wirklich gelohnt haben?', 'Formuliere es als Hashtag, zum Beispiel #KritikgesprächeFühren. Ein bis drei Hashtags pro Person, dann an die Pinnwand.', 'ca. 10 Minuten')
+task('group', 'Was ist Führung?', 'image11.jpg',
+     [('p', 'Wir falten den Halbkreis: Die Person ganz links geht zur Person ganz rechts, und so weiter. So sprechen immer wenig und viel Erfahrung miteinander.'),
+      ('b', 'Führen heißt für mich …'), ('b', 'Wer war deine beste Führungskraft, und was hat sie ausgemacht?'),
+      ('p', 'Einigt euch zu zweit auf einen Satz „Führung ist …“ und schreibt ihn auf eine Karte.')],
+     '2 × 5 Minuten zu zweit, Karte 2 Minuten')
 
 chapter(1, 'Die Veränderungskurve')
 task('solo', 'Wo steht dein Team?', 'image13.jpg',
