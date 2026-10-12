@@ -350,6 +350,76 @@ def eisenhower():
     side_photo(s, 'image15.jpg', 0.55, 'eisen_portrait')
     tbox(s, 2.2, 6.5, 6.95, 0.6, [('Neue Führungskräfte stecken oft im Feld „Sofort“. Führung passiert im Feld „Planen“. Blocke dir dafür feste Zeit.', 13, PURPLE, True, 0)])
 
+
+def ps_slides():
+    GREY = RGBColor(0xF4, 0xF1, 0xF8)
+    # 1 Ausgangslage
+    s = blank_title('Warum Zusammenarbeit oft schwierig wird')
+    for i, (h, t) in enumerate([('Viele Aufgaben', 'Teams arbeiten an sehr unterschiedlichen Aufgaben gleichzeitig.'),
+                                ('Viele Arbeitsformen', 'Jede Aufgabe braucht eine andere Form, miteinander zu arbeiten.'),
+                                ('Reibung', 'Das führt zu Unsicherheit, Reibung und Missverständnissen.')]):
+        y = 1.5 + i * 1.3
+        o = s.shapes.add_shape(MSO_SHAPE.OVAL, Inches(0.5), Inches(y), Inches(0.6), Inches(0.6)); o.fill.solid(); o.fill.fore_color.rgb = PURPLE; o.line.fill.background(); o.shadow.inherit = False
+        p = o.text_frame.paragraphs[0]; p.alignment = PP_ALIGN.CENTER; r = p.add_run(); r.text = str(i + 1); r.font.size = Pt(18); r.font.bold = True; r.font.color.rgb = WHITE
+        tbox(s, 1.35, y - 0.02, 7.4, 1.1, [(h, 20, DARK, True, 0), (t, 16, SOFT, False, 4)])
+    card(s, 0.5, 5.5, 8.6, 1.1, LAV)
+    tbox(s, 0.8, 5.75, 8.1, 0.7, [('Die entscheidende Frage: Wie sicher fühlen sich Menschen dabei?', 20, PURPLE, True, 0)])
+    side_photo(s, 'image103.png', 0.5, 'ps1')
+    # 2 Edmondson
+    s = blank_title('Warum Fehler so wichtig sind')
+    for i, (h, t) in enumerate([('Die Forschung', 'Amy Edmondson (Harvard) untersuchte Teams in Kliniken.'),
+                                ('Ihre Annahme', 'Teams mit guter Zusammenarbeit machen weniger Fehler.'),
+                                ('Die Überraschung', 'Die besten Teams meldeten die meisten Fehler.'),
+                                ('Die Erkenntnis', 'Sie machten nicht mehr Fehler. Sie trauten sich, sie anzusprechen.')]):
+        y = 1.4 + i * 1.2
+        o = s.shapes.add_shape(MSO_SHAPE.OVAL, Inches(0.5), Inches(y), Inches(0.55), Inches(0.55)); o.fill.solid(); o.fill.fore_color.rgb = PURPLE; o.line.fill.background(); o.shadow.inherit = False
+        p = o.text_frame.paragraphs[0]; p.alignment = PP_ALIGN.CENTER; r = p.add_run(); r.text = str(i + 1); r.font.size = Pt(16); r.font.bold = True; r.font.color.rgb = WHITE
+        tbox(s, 1.3, y - 0.02, 6.0, 1.0, [(h, 14, PURPLE, True, 0), (t, 17, DARK, False, 2)])
+    card(s, 7.7, 2.2, 5.15, 3.4, DARK)
+    tbox(s, 8.05, 2.55, 4.5, 2.9, [('Psychologische Sicherheit', 24, RGBColor(0xD6, 0xB4, 0xFF), True, 0), ('Menschen fühlen sich sicher genug, Fehler, Zweifel und Ideen offen anzusprechen.', 19, WHITE, False, 10)])
+    # 3 Voraussetzung
+    s = blank_title('Psychologische Sicherheit ist Voraussetzung')
+    tbox(s, 0.5, 1.4, 4.2, 4.5, [('für gute Leistung', 19, DARK, True, 0), ('für wirksame Zusammenarbeit', 19, DARK, True, 10), ('für Lernen', 19, DARK, True, 10), ('für neue Ideen', 19, DARK, True, 10)])
+    card(s, 4.6, 1.35, 4.5, 4.9, LAV)
+    tbox(s, 4.9, 1.6, 4.0, 4.5, [('Dann trauen sich Menschen, …', 16, PURPLE, True, 0), ('ungewöhnliche Ideen einzubringen', 16, DARK, False, 10), ('Entscheidungen zu hinterfragen, auch die der Führung', 16, DARK, False, 8), ('ehrlich zu sagen, was sie denken', 16, DARK, False, 8), ('zuzugeben, wenn sie etwas nicht wissen', 16, DARK, False, 8)])
+    side_photo(s, 'image102.png', 0.5, 'ps3')
+    # 4 Google
+    s = blank_title('Was macht Teams erfolgreich?')
+    tbox(s, 0.5, 1.3, 8.6, 0.8, [('Google untersuchte über 180 eigene Teams und wollte wissen, was die besten Teams ausmacht.', 17, SOFT, False, 0)])
+    for i, t in enumerate(['Nicht die Intelligenz', 'Nicht die Persönlichkeit', 'Nicht die Erfahrung']):
+        card(s, 0.5 + i * 2.95, 2.3, 2.75, 1.0, GREY)
+        tb = tbox(s, 0.6 + i * 2.95, 2.6, 2.55, 0.5, [(t, 16, DARK, True, 0)]); tb.text_frame.paragraphs[0].alignment = PP_ALIGN.CENTER
+    card(s, 0.5, 3.6, 8.6, 2.2, PURPLE)
+    tbox(s, 0.85, 3.85, 8.0, 1.9, [('Der wichtigste Faktor', 13, RGBColor(0xD6, 0xB4, 0xFF), True, 0), ('Psychologische Sicherheit', 28, WHITE, True, 4), ('Menschen trauen sich, offen zu sprechen, Fragen zu stellen und Fehler zuzugeben.', 16, WHITE, False, 6)])
+    tbox(s, 0.5, 6.15, 8.6, 0.6, [('Nicht die Stars machen den Unterschied, sondern das Klima im Team.', 17, PURPLE, True, 0)])
+    side_photo(s, 'image90.jpeg', 0.5, 'ps4')
+    # 5 Luecke
+    s = blank_title('Warum Sicherheit oft überschätzt wird')
+    card(s, 0.5, 1.4, 6.0, 5.2, GREY); card(s, 6.85, 1.4, 6.0, 5.2, LAV)
+    tbox(s, 0.85, 1.7, 5.3, 4.8, [('Zwei Blickwinkel', 22, DARK, True, 0), ('Führungskräfte schätzen das Klima im Team oft deutlich positiver ein als ihre Mitarbeitenden.', 17, DARK, False, 14), ('Laut McKinsey zeigt nur gut ein Viertel der Führungskräfte regelmäßig das Verhalten, das psychologische Sicherheit fördert.', 17, DARK, False, 12)])
+    tbox(s, 7.2, 1.7, 5.3, 4.8, [('Der Denkfehler', 22, PURPLE, True, 0), ('„Meine Tür steht immer offen“ reicht nicht.', 17, DARK, False, 14), ('Sicherheit entsteht nicht durch Einladung, sondern durch Reaktionen im Alltag.', 17, DARK, False, 12), ('Alle beobachten: Was passiert, wenn etwas schiefgeht? Werden Fehler genutzt oder bestraft?', 17, DARK, False, 12)])
+    # 6 Dreieck
+    s = blank_title('Drei Seiten psychologischer Sicherheit')
+    tri = s.shapes.add_shape(MSO_SHAPE.ISOSCELES_TRIANGLE, Inches(0.6), Inches(1.6), Inches(4.4), Inches(4.0))
+    tri.fill.solid(); tri.fill.fore_color.rgb = LAV; tri.line.color.rgb = PURPLE; tri.line.width = Pt(3); tri.shadow.inherit = False
+    tb = tbox(s, 1.3, 4.2, 3.0, 1.0, [('Psychologische', 18, DARK, True, 0), ('Sicherheit', 18, DARK, True, 0)]); [setattr(p, 'alignment', PP_ALIGN.CENTER) for p in tb.text_frame.paragraphs]
+    for i, (h, t) in enumerate([('Vertrauen schenken', 'Ich traue anderen etwas zu und bin selbst glaubwürdig. Vertrauen geschenkt zu bekommen ist einer der stärksten Antriebe für Wachstum.'),
+                                ('Verantwortung übernehmen', 'Aus Überzeugung handeln, nicht aus Pflicht. Dafür braucht es Klarheit über das Ziel und die nötige Kompetenz.'),
+                                ('Verletzlichkeit zeigen', 'Sagen können: Ich habe das nicht verstanden. Ich brauche Hilfe. Ohne Gesichtsverlust.')]):
+        y = 1.45 + i * 1.75
+        card(s, 5.6, y, 7.25, 1.55, PURPLE if i == 0 else (DARK if i == 1 else RGBColor(0x96, 0x46, 0xFA)))
+        tbox(s, 5.9, y + 0.18, 6.7, 1.3, [(h, 19, WHITE, True, 0), (t, 14, WHITE, False, 4)])
+    # 7 Zusammenhang
+    s = blank_title('Sicherheit entsteht, wenn Bedürfnisse erfüllt sind')
+    for i, (h, t) in enumerate([('Vertrauen schenken', 'Bindung, Selbstwert'), ('Verantwortung übernehmen', 'Orientierung und Kontrolle, Kohärenz'), ('Verletzlichkeit zeigen', 'Selbstwertschutz, Bindung')]):
+        y = 1.5 + i * 1.35
+        card(s, 0.5, y, 4.6, 1.05, DARK)
+        tbox(s, 0.8, y + 0.3, 4.2, 0.6, [(h, 19, WHITE, True, 0)])
+        tbox(s, 5.3, y + 0.25, 0.6, 0.6, [('→', 28, PURPLE, True, 0)])
+        card(s, 6.0, y, 6.85, 1.05, LAV)
+        tbox(s, 6.3, y + 0.15, 6.4, 0.9, [('braucht', 13, PURPLE, True, 0), (t, 18, DARK, False, 2)])
+    tbox(s, 0.5, 5.7, 12.3, 1.0, [('Wer die Bedürfnisse der anderen im Blick hat, schafft das Klima, in dem offen gesprochen wird. Das ist Aufgabe der Führung, und jede Person im Team trägt dazu bei.', 16, PURPLE, True, 0)])
+
 # ---------- Inhalt ----------
 haufe_title('Das erste Mal führen 1', 'Vom Rollenwechsel bis zu ersten Führungsgesprächen: dein Fundament für einen erfolgreichen Start in die Führung', 'image10.jpg')
 trainer()
@@ -418,6 +488,7 @@ chapter(5, 'Fünf Grundbedürfnisse')
 needs_overview()
 for _i, _img in enumerate(['image101.png', mirrored('image17.jpg'), mirrored('image10.jpg'), mirrored('image6.jpg'), mirrored('image11.jpg')]):
     need_detail(_i, _img)
+ps_slides()
 task('group', 'Ein Bedürfnis, viele Ideen', 'image6.jpg',
      [('p', 'Jede Gruppe übernimmt ein Grundbedürfnis. Haltet auf eurem Plakat fest:'),
       ('b', 'Woran merke ich im Alltag, dass es bedroht ist?'), ('b', 'Was tue ich ab Montag konkret, um es zu stärken?'),
