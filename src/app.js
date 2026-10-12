@@ -3,7 +3,7 @@
 const ERGEBNISSE = [
   // { titel: "Unsere Veränderungskurve", bild: "fotos/kurve.jpg", orte: ["kurve"] },
 ];
-const FOLIEN = 54; // Anzahl der Folienbilder in folien/
+const FOLIEN = 63; // Anzahl der Folienbilder in folien/
 
 /* ---------- Speicher (nur auf diesem Gerät) ---------- */
 const KEY = 'erstes-mal-fuehren-begleitraum-v1';
@@ -112,6 +112,9 @@ function summary(){
   const tm=(p.team||[]).filter(m=>m.kz).map(m=>`${esc(m.kz)}${m.aufgabe?' bei '+esc(m.aufgabe):''}${m.q?': '+esc(QUADS.find(q=>q.k===m.q).t):''}${m.frage?' · Frage: '+esc(m.frage):''}`).join('<br>');
   if(tm) h+=`<p><b>Mein Team:</b><br>${tm}</p>`;
   h+=`<h3>Mein Gespräch</h3>${line('Mit',g.mit)}${line('Anlass',g.anlass)}${line('Ziel',g.G)}${line('Realität',g.R)}${line('Möglichkeiten',g.O)}${line('Vereinbarung',g.W)}${line('Erster Satz',g.einstieg)}${line('Ich weiß',g.weiss)}${line('Mir ist wichtig',g.wichtig)}${line('Ich bin offen',g.offen)}`;
+  const W=S.wandel||{}, D=S.druck||{};
+  if(W.v||W.u||W.k||W.a) h+=`<h3>Meine Antwort auf VUKA</h3>${line('Vision',W.v)}${line('Verstehen',W.u)}${line('Klarheit',W.k)}${line('Agilität',W.a)}`;
+  if(D.lassen||D.abgeben||D.planen) h+=`<h3>Meine Prioritäten</h3>${line('Das lasse ich',D.lassen)}${line('Das gebe ich ab',D.abgeben)}${line('Feste Zeit für',D.planen)}`;
   h+=`<h3>Meine ersten Schritte</h3>${[1,2,3].map(n=>s[n]?line('Schritt '+n,s[n]+(s[n+'w']?' (bis '+s[n+'w']+')':'')):'').join('')}${line('Transfer-Buddy',s.buddy)}${line('Mein wichtigster Satz',s.satz)}`;
   return h;
 }
@@ -142,6 +145,8 @@ function bindInputs(root){
     el.addEventListener('input',()=>{ setP(el.dataset.save, el.value); });
   });
 }
+
+bindInputs(document);
 
 /* ---------- Satzstarter ---------- */
 const SENT=[

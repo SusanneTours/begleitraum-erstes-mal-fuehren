@@ -290,6 +290,66 @@ def johari():
     s.shapes.add_picture(pf, Inches(9.45), Inches(1.65), Inches(3.45), Inches(5.25))
     tbox(s, 2.2, 6.5, 6.95, 0.6, [('Feedback verkleinert den blinden Fleck. Offenheit verkleinert das Private. So wächst das Öffentliche, und damit das Vertrauen.', 13, PURPLE, True, 0)])
 
+
+def blank_title(t):
+    s = dup('steps')
+    set_text(shape(s, 'Title 1'), t)
+    keep = {'Title 1', 'Footer Placeholder 3'}
+    for sh in list(s.shapes):
+        if sh.name not in keep:
+            sh._element.getparent().remove(sh._element)
+    return s
+
+def side_photo(s, img, cxf, name):
+    im = Image.open(MEDIA + img).convert('RGB').resize((1600, 900))
+    cw = int(900 * 3.45 / 5.25); cx = int(1600 * cxf)
+    pf = SHIFT + name + '.jpg'; im.crop((cx - cw // 2, 0, cx + cw // 2, 900)).save(pf, quality=88)
+    s.shapes.add_picture(pf, Inches(9.45), Inches(1.65), Inches(3.45), Inches(5.25))
+
+def vuka():
+    s = blank_title('VUKA und die Antwort darauf')
+    rows = [('V', 'Volatil', 'Alles ändert sich schnell.', 'Vision', 'Ein klares Wohin gibt Halt.'),
+            ('U', 'Unsicher', 'Niemand weiß, was kommt.', 'Verstehen', 'Zuhören, nachfragen, Perspektiven holen.'),
+            ('K', 'Komplex', 'Vieles hängt zusammen.', 'Klarheit', 'Prioritäten, Rollen, nächste Schritte.'),
+            ('A', 'Ambivalent', 'Es gibt mehrere Wahrheiten.', 'Agilität', 'Ausprobieren, lernen, anpassen.')]
+    tbox(s, 0.45, 1.2, 4.0, 0.4, [('Die Welt ist …', 15, SOFT, True, 0)])
+    tbox(s, 5.05, 1.2, 4.0, 0.4, [('Deine Antwort als Führungskraft', 15, PURPLE, True, 0)])
+    for i, (l, w, d, a, ad) in enumerate(rows):
+        y = 1.7 + i * 1.28
+        card(s, 0.45, y, 4.1, 1.1, RGBColor(0xF4, 0xF1, 0xF8))
+        tbox(s, 0.7, y + 0.15, 3.7, 0.9, [(w, 18, DARK, True, 0), (d, 13, SOFT, False, 2)])
+        tbox(s, 4.6, y + 0.3, 0.4, 0.5, [('→', 24, PURPLE, True, 0)])
+        card(s, 5.05, y, 4.0, 1.1, PURPLE)
+        tbox(s, 5.3, y + 0.15, 3.6, 0.9, [(a, 18, WHITE, True, 0), (ad, 13, WHITE, False, 2)])
+    side_photo(s, 'image13.jpg', 0.62, 'vuka_portrait')
+
+def einfluss():
+    s = blank_title('Wo setzt du deine Energie ein?')
+    from pptx.enum.shapes import MSO_SHAPE as MS
+    for d, col, tcol in [(5.4, RGBColor(0xF4, 0xF1, 0xF8), DARK), (3.2, PURPLE, WHITE)]:
+        o = s.shapes.add_shape(MS.OVAL, Inches(4.75 - d / 2), Inches(4.25 - d / 2), Inches(d), Inches(d))
+        o.fill.solid(); o.fill.fore_color.rgb = col; o.line.fill.background(); o.shadow.inherit = False
+    tb = tbox(s, 3.35, 3.6, 2.8, 1.3, [('Einflusskreis', 20, WHITE, True, 0), ('Das kann ich selbst bewegen.', 13, WHITE, False, 4)]); tb.text_frame.paragraphs[0].alignment = PP_ALIGN.CENTER; tb.text_frame.paragraphs[1].alignment = PP_ALIGN.CENTER
+    tb = tbox(s, 2.6, 1.8, 4.3, 0.8, [('Sorgenkreis', 18, DARK, True, 0), ('Beschäftigt mich, kann ich aber nicht ändern.', 12, SOFT, False, 2)]); tb.text_frame.paragraphs[0].alignment = PP_ALIGN.CENTER; tb.text_frame.paragraphs[1].alignment = PP_ALIGN.CENTER
+    side_photo(s, 'image10.jpg', 0.68, 'einfluss_portrait')
+    tbox(s, 0.45, 6.75, 8.6, 0.4, [('Stress wächst, wenn wir Kraft in den Sorgenkreis stecken. Er sinkt, wenn wir im Einflusskreis handeln.', 14, PURPLE, True, 0)])
+
+def eisenhower():
+    s = blank_title('Wichtig oder dringend?')
+    tbox(s, 2.2, 1.2, 3.4, 0.4, [('dringend', 15, SOFT, True, 0)]).text_frame.paragraphs[0].alignment = PP_ALIGN.CENTER
+    tbox(s, 5.75, 1.2, 3.4, 0.4, [('nicht dringend', 15, SOFT, True, 0)]).text_frame.paragraphs[0].alignment = PP_ALIGN.CENTER
+    tbox(s, 0.45, 2.4, 1.7, 0.8, [('wichtig', 15, SOFT, True, 0)])
+    tbox(s, 0.45, 4.85, 1.7, 0.8, [('nicht wichtig', 15, SOFT, True, 0)])
+    Q = [(2.2, 1.65, ROSE, 'Sofort selbst', 'Krisen, echte Fristen.', DARK),
+         (5.75, 1.65, PURPLE, 'Planen', 'Führung, Gespräche, Entwicklung. Hier entsteht Wirkung.', WHITE),
+         (2.2, 4.1, LAV, 'Abgeben', 'Unterbrechungen, vieles in Mails.', DARK),
+         (5.75, 4.1, RGBColor(0xF4, 0xF1, 0xF8), 'Lassen', 'Was niemand vermissen würde.', DARK)]
+    for x, y, col, head, txt, tc in Q:
+        card(s, x, y, 3.4, 2.3, col)
+        tbox(s, x + 0.25, y + 0.25, 2.9, 1.9, [(head, 22, tc, True, 0), (txt, 15, tc, False, 8)])
+    side_photo(s, 'image15.jpg', 0.55, 'eisen_portrait')
+    tbox(s, 2.2, 6.5, 6.95, 0.6, [('Neue Führungskräfte stecken oft im Feld „Sofort“. Führung passiert im Feld „Planen“. Blocke dir dafür feste Zeit.', 13, PURPLE, True, 0)])
+
 # ---------- Inhalt ----------
 haufe_title('Das erste Mal führen 1', 'Vom Rollenwechsel bis zu ersten Führungsgesprächen: dein Fundament für einen erfolgreichen Start in die Führung', 'image10.jpg')
 trainer()
@@ -444,6 +504,32 @@ steps('Wenn es blockiert', 'Trio', '3 Runden à 10 Min.', [
     ('Blockade', 'B macht dicht: schweigt, antwortet einsilbig oder sagt nur „Passt schon“.', ''),
     ('Dreiklang', 'A bleibt dran mit „Ich weiß …“, „Mir ist wichtig …“, „Ich bin offen …“. C beobachtet.', '5 Minuten'),
     ('Rückmeldung', 'B und C: Welcher Satz hat die Tür geöffnet? Dann wechselt ihr.', '3 Minuten')])
+chapter(11, 'Führen im Wandel: VUKA')
+vuka()
+steps('Kollegiale Beratung: Ständige Veränderung', 'Gruppe', '30 Min.', [
+    ('Fall schildern', 'Eine Person schildert ihre Situation: Was verändert sich ständig? Was macht es schwer? Die anderen hören nur zu.', '5 Minuten'),
+    ('Nachfragen', 'Die Gruppe stellt Verständnisfragen. Keine Ratschläge.', '5 Minuten'),
+    ('Ideen sammeln', 'Die Gruppe sammelt zu jedem Buchstaben: Vision, Verstehen, Klarheit, Agilität. Was könnte sie konkret tun? Die Person dreht sich weg und hört zu.', '12 Minuten'),
+    ('Mitnehmen', 'Die Person sagt, was sie mitnimmt und was sie als Erstes ausprobiert.', '5 Minuten')])
+task('solo', 'Deine Antwort auf VUKA', shifted('image12.jpg', 0.12),
+     [('p', 'Denk an eine Veränderung in deinem Bereich. Notiere zu jedem Buchstaben einen Satz:'),
+      ('b', 'Vision: Wohin wollen wir, auch wenn sich vieles ändert?'), ('b', 'Verstehen: Wen frage ich, um die Lage besser zu verstehen?'),
+      ('b', 'Klarheit: Was ist jetzt wichtig, was nicht?'), ('b', 'Agilität: Was probieren wir aus, und wann schauen wir drauf?')],
+     '8 Minuten, Einzelarbeit')
+chapter(12, 'Unter Druck führen')
+einfluss()
+eisenhower()
+steps('Deine Prioritäten', 'Allein, dann zu zweit', '25 Min.', [
+    ('Sammeln', 'Schreib alles auf, was gerade auf deinem Tisch liegt. Eine Aufgabe pro Klebezettel.', '5 Minuten'),
+    ('Sortieren', 'Kleb jede Aufgabe in ein Feld: sofort, planen, abgeben, lassen. Markiere, was in deinem Einflusskreis liegt.', '7 Minuten'),
+    ('Entscheiden', 'Was lässt du ab morgen? Was gibst du ab, und an wen? Wofür blockst du feste Zeit?', '5 Minuten'),
+    ('Zu zweit', 'Stellt euch eure Entscheidung vor. Das Gegenüber fragt nach: Was hindert dich daran?', '2 × 4 Minuten')])
+task('solo', 'Nein sagen', shifted('image16.jpg', 0.27),
+     [('p', 'Neue Aufgaben kommen immer. Formuliere deinen Satz für das nächste Mal:'),
+      ('b', '„Ja, gern. Was soll ich dafür liegen lassen?“'), ('b', '„Das schaffe ich bis Freitag nicht. Bis Mittwoch nächster Woche geht es.“'),
+      ('b', '„Ich kann das nicht übernehmen. Was ich anbieten kann, ist …“'),
+      ('p', 'Welcher Satz passt zu dir? Schreib deine eigene Version auf.')],
+     '5 Minuten, Einzelarbeit')
 task('solo', 'Dein Startplan', 'image90.jpeg',
      [('p', 'Was tust du in den nächsten 30 Tagen? Halte im Startplan unter Schritt 8 fest:'),
       ('b', 'Drei konkrete Schritte, jeweils mit Datum'), ('b', 'Deinen Transfer-Buddy aus dieser Gruppe'),
