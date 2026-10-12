@@ -265,6 +265,31 @@ def need_detail(i, img):
     tbox(s, 6.2, 4.65, 2.75, 1.9, [('Im Team erfüllt, wenn …', 14, PURPLE, True, 0), (ok, 14, DARK, False, 6)])
     tbox(s, 9.53, 4.65, 2.75, 1.9, [('Woran man merkt, dass es fehlt', 14, RGBColor(0xCB, 0x01, 0x01), True, 0), (fehlt, 14, DARK, False, 6)])
 
+
+def johari():
+    s = dup('steps')
+    set_text(shape(s, 'Title 1'), 'Das Johari-Fenster: dein blinder Fleck')
+    keep = {'Title 1', 'Footer Placeholder 3', 'Slide Number Placeholder 4'}
+    for sh in list(s.shapes):
+        if sh.name not in keep:
+            sh._element.getparent().remove(sh._element)
+    tbox(s, 2.2, 1.2, 3.4, 0.4, [('Mir selbst bekannt', 15, SOFT, True, 0)]).text_frame.paragraphs[0].alignment = PP_ALIGN.CENTER
+    tbox(s, 5.75, 1.2, 3.4, 0.4, [('Mir selbst unbekannt', 15, SOFT, True, 0)]).text_frame.paragraphs[0].alignment = PP_ALIGN.CENTER
+    tbox(s, 0.45, 2.3, 1.8, 1.0, [('Anderen bekannt', 15, SOFT, True, 0)])
+    tbox(s, 0.45, 4.75, 1.8, 1.0, [('Anderen unbekannt', 15, SOFT, True, 0)])
+    Q = [(2.2, 1.65, LAV, 'Öffentlich', 'Was ich und andere von mir wissen.', DARK),
+         (5.75, 1.65, PURPLE, 'Blinder Fleck', 'Was andere an mir sehen, ich selbst aber nicht.', WHITE),
+         (2.2, 4.1, RGBColor(0xF4, 0xF1, 0xF8), 'Privat', 'Was ich weiß, anderen aber nicht zeige.', DARK),
+         (5.75, 4.1, RGBColor(0xF4, 0xF1, 0xF8), 'Unbekannt', 'Was weder ich noch andere wissen.', DARK)]
+    for x, y, col, head, txt, tc in Q:
+        card(s, x, y, 3.4, 2.3, col)
+        tbox(s, x + 0.25, y + 0.25, 2.9, 1.9, [(head, 24, tc, True, 0), (txt, 16, tc, False, 8)])
+    im = Image.open(MEDIA + 'image9.jpg').convert('RGB').resize((1600, 900))
+    cw = int(900 * 3.45 / 5.25); cx = int(1600 * 0.62)
+    pf = SHIFT + 'johari_portrait.jpg'; im.crop((cx - cw // 2, 0, cx + cw // 2, 900)).save(pf, quality=88)
+    s.shapes.add_picture(pf, Inches(9.45), Inches(1.65), Inches(3.45), Inches(5.25))
+    tbox(s, 2.2, 6.5, 6.95, 0.6, [('Feedback verkleinert den blinden Fleck. Offenheit verkleinert das Private. So wächst das Öffentliche, und damit das Vertrauen.', 13, PURPLE, True, 0)])
+
 # ---------- Inhalt ----------
 haufe_title('Das erste Mal führen 1', 'Vom Rollenwechsel bis zu ersten Führungsgesprächen: dein Fundament für einen erfolgreichen Start in die Führung', 'image10.jpg')
 trainer()
@@ -402,6 +427,12 @@ task('solo', 'Dein offenes Gespräch', shifted('image4.jpg', 0.4),
       ('b', 'Seit wann schiebst du es auf?'), ('b', 'Was kostet es dich jede Woche, dass du es nicht führst?'),
       ('b', 'Wann führst du es?')],
      '3 Minuten, Einzelarbeit')
+johari()
+steps('Dein blinder Fleck', 'Zu zweit', '12 Min.', [
+    ('Allein', 'Wie möchtest du als Führungskraft wirken? Notiere drei Eigenschaften.', '2 Minuten'),
+    ('Fragen', 'Frag dein Gegenüber: Wie hast du mich in diesen zwei Tagen erlebt? Was fällt dir an mir auf?', '3 Minuten'),
+    ('Vergleichen', 'Was passt zu deinem Bild? Was überrascht dich? Dann tauscht ihr die Rollen.', '3 Minuten'),
+    ('Mitnehmen', 'Wen in deinem Team fragst du als Erstes nach Feedback? Formuliere deine Frage.', '4 Minuten')])
 task('solo', 'Kritik in drei Schritten', shifted('image16.jpg', 0.27),
      [('p', 'Formuliere für dein Gespräch die ersten Sätze:'),
       ('b', 'Wahrnehmung: Was habe ich beobachtet, ohne Wertung?'), ('b', 'Wirkung: Was löst das aus, bei mir, im Team, beim Kunden?'),
