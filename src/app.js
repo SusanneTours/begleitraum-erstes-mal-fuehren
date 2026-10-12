@@ -3,7 +3,7 @@
 const ERGEBNISSE = [
   // { titel: "Unsere Veränderungskurve", bild: "fotos/kurve.jpg", orte: ["kurve"] },
 ];
-const FOLIEN = 70; // Anzahl der Folienbilder in folien/
+const FOLIEN = 71; // Anzahl der Folienbilder in folien/
 
 /* ---------- Speicher (nur auf diesem Gerät) ---------- */
 const KEY = 'erstes-mal-fuehren-begleitraum-v1';

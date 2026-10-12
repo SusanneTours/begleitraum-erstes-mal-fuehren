@@ -420,6 +420,20 @@ def ps_slides():
         tbox(s, 6.3, y + 0.15, 6.4, 0.9, [('braucht', 13, PURPLE, True, 0), (t, 18, DARK, False, 2)])
     tbox(s, 0.5, 5.7, 12.3, 1.0, [('Wer die Bedürfnisse der anderen im Blick hat, schafft das Klima, in dem offen gesprochen wird. Das ist Aufgabe der Führung, und jede Person im Team trägt dazu bei.', 16, PURPLE, True, 0)])
 
+
+def qr_slide():
+    s = blank_title('Dein Begleitraum zum Mitnehmen')
+    card(s, 0.5, 1.4, 4.2, 4.9, WHITE)
+    s.shapes.add_picture('/home/claude/erstes-mal-fuehren/src/QR_Begleitraum.png', Inches(0.75), Inches(1.6), Inches(3.7), Inches(3.7))
+    tb = tbox(s, 0.6, 5.45, 4.0, 0.6, [('erstes-mal-fuehren-1-begleitraum.netlify.app', 12, SOFT, False, 0)]); tb.text_frame.paragraphs[0].alignment = PP_ALIGN.CENTER
+    tbox(s, 5.1, 1.5, 4.1, 5.0, [('Scanne den Code mit deinem Handy.', 20, DARK, True, 0),
+        ('Dort findest du alle Inhalte der zwei Tage, die Folien, deinen Startplan und die Satzstarter.', 16, SOFT, False, 10),
+        ('So hast du ihn immer dabei:', 16, PURPLE, True, 18),
+        ('iPhone: Teilen, dann „Zum Home-Bildschirm“', 15, DARK, False, 6),
+        ('Android: Menü, dann „Zum Startbildschirm hinzufügen“', 15, DARK, False, 4),
+        ('Deine Eingaben bleiben auf deinem Gerät. Den Startplan kannst du als PDF sichern.', 14, SOFT, False, 18)])
+    side_photo(s, 'image9.jpg', 0.62, 'qr_portrait')
+
 # ---------- Inhalt ----------
 haufe_title('Das erste Mal führen 1', 'Vom Rollenwechsel bis zu ersten Führungsgesprächen: dein Fundament für einen erfolgreichen Start in die Führung', 'image10.jpg')
 trainer()
@@ -609,6 +623,7 @@ task('solo', 'Dein Startplan', 'image90.jpeg',
      '15 Minuten')
 box('Zum Abschluss', 'Wir stellen uns in einen Kreis. Jede Person sagt einen Satz:',
     '„Mein erster Schritt ist … bis …“', 'Wir hören zu und kommentieren nicht. Applaus gibt es am Ende für alle.', '10 Minuten')
+qr_slide()
 end('Danke für zwei starke Tage', 'Dein Startplan und die Satzstarter bleiben im Begleitraum für dich offen. Ich wünsche dir einen guten Start in deiner Rolle.')
 
 # Originalfolien entfernen
