@@ -27,7 +27,8 @@ function route(){
   const sub = qp.get('sub'); if (sub) { const nav = document.querySelector('#p-' + page + ' .subnav[id]'); if (nav) showSub(nav, sub); }
   if (page === 'startplan') { const st = parseInt(qp.get('step'), 10); if (!isNaN(st)) { S.step = Math.max(0, Math.min(STEPS.length - 1, st - 1)); save(); } renderWiz(); }
   document.getElementById('side').classList.remove('open');
-  window.scrollTo(0, 0);
+  const to = qp.get('to'); const el = to && document.getElementById(to);
+  if (el) setTimeout(() => el.scrollIntoView({block:'start'}), 60); else window.scrollTo(0, 0);
 }
 function toggleNav(){ document.getElementById('side').classList.toggle('open'); }
 document.addEventListener('click', e => { const side = $('#side'); if (side.classList.contains('open') && !side.contains(e.target) && !e.target.closest('.topbar')) side.classList.remove('open'); });

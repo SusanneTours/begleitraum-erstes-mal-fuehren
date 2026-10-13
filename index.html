@@ -269,6 +269,7 @@ details.more .b{padding:0 20px 16px}
 .korr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0 0 16px}
 .korr .card{margin:0;border-top:5px solid var(--violet)}
 @media (max-width:860px){.korr{grid-template-columns:1fr}.trans{grid-template-columns:1fr}}
+[id]{scroll-margin-top:76px}
 
 </style>
 
@@ -963,7 +964,8 @@ function route(){
   const sub = qp.get('sub'); if (sub) { const nav = document.querySelector('#p-' + page + ' .subnav[id]'); if (nav) showSub(nav, sub); }
   if (page === 'startplan') { const st = parseInt(qp.get('step'), 10); if (!isNaN(st)) { S.step = Math.max(0, Math.min(STEPS.length - 1, st - 1)); save(); } renderWiz(); }
   document.getElementById('side').classList.remove('open');
-  window.scrollTo(0, 0);
+  const to = qp.get('to'); const el = to && document.getElementById(to);
+  if (el) setTimeout(() => el.scrollIntoView({block:'start'}), 60); else window.scrollTo(0, 0);
 }
 function toggleNav(){ document.getElementById('side').classList.toggle('open'); }
 document.addEventListener('click', e => { const side = $('#side'); if (side.classList.contains('open') && !side.contains(e.target) && !e.target.closest('.topbar')) side.classList.remove('open'); });

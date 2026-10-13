@@ -55,3 +55,4 @@ details.more .b{padding:0 20px 16px}
 .korr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0 0 16px}
 .korr .card{margin:0;border-top:5px solid var(--violet)}
 @media (max-width:860px){.korr{grid-template-columns:1fr}.trans{grid-template-columns:1fr}}
+[id]{scroll-margin-top:76px}
