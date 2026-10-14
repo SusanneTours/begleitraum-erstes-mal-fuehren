@@ -1,9 +1,25 @@
 /* ---------- Fotos für "Unsere Ergebnisse": Dateien in den Ordner fotos/ legen und hier eintragen ----------
    orte: kurve, perspektive, erwartungen, korridor, beduerfnisse, skillwill, augenhoehe, fragen, grow, schwierig  */
 const ERGEBNISSE = [
-  // { titel: "Unsere Veränderungskurve", bild: "fotos/kurve.jpg", orte: ["kurve"] },
+  { titel: "Unsere Veränderungskurve", bild: "fotos/veraenderungskurve.jpg", orte: ["kurve"] },
+  { titel: "Was passiert mit dem Team bei einer neuen Führungskraft?", bild: "fotos/perspektivwechsel_pinnwand.jpg", orte: ["perspektive"] },
+  { titel: "Die Teamuhr", bild: "fotos/teamuhr.jpg", orte: ["perspektive"] },
+  { titel: "Das Erwartungsgespräch", bild: "fotos/erwartungsgespraech.jpg", orte: ["erwartungen"] },
+  { titel: "Unser Führungskorridor", bild: "fotos/fuehrungskorridor.jpg", orte: ["korridor"] },
+  { titel: "Eure Erwartungswand: an dich selbst, an deine Mitarbeitenden, an deinen Chef", bild: "fotos/erwartungswand.jpg", orte: ["korridor", "erwartungen"] },
+  { titel: "Kurzfristige Ziele mit OKR", bild: "fotos/okr.jpg", orte: ["korridor", "wandel"] },
+  { titel: "Bindung", bild: "fotos/bindung.jpg", orte: ["beduerfnisse"] },
+  { titel: "Orientierung und Kontrolle", bild: "fotos/kontrolle_orientierung.jpg", orte: ["beduerfnisse"] },
+  { titel: "Selbstwert", bild: "fotos/selbstwert.jpg", orte: ["beduerfnisse"] },
+  { titel: "Lustgewinn und Unlustvermeidung", bild: "fotos/unlust.jpg", orte: ["beduerfnisse"] },
+  { titel: "Kohärenz", bild: "fotos/kohaerenz.jpg", orte: ["beduerfnisse"] },
+  { titel: "Kohärenz: private Welt, Ausbildung, berufliche Welt", bild: "fotos/kohaerenz_kreise.jpg", orte: ["beduerfnisse"] },
+  { titel: "Drei Seiten psychologischer Sicherheit", bild: "fotos/psychologische_sicherheit.jpg", orte: ["beduerfnisse"] },
+  { titel: "Eure Matrix: Können und Wollen mit offenen Fragen", bild: "fotos/skill_will.jpg", orte: ["skillwill", "fragen"] },
+  { titel: "Der Eisberg", bild: "fotos/eisberg.jpg", orte: ["grow", "schwierig"] },
+  { titel: "Das GROW-Modell", bild: "fotos/grow.jpg", orte: ["grow"] },
 ];
-const FOLIEN = 37; // Anzahl der Folienbilder in folien/
+const FOLIEN = 57; // Anzahl der Folienbilder in folien/
 
 /* ---------- Speicher (nur auf diesem Gerät) ---------- */
 const KEY = 'erstes-mal-fuehren-begleitraum-v1';
@@ -88,7 +104,7 @@ function stepBody(i){
     case 0: return `<h3>Meine Situation</h3><p class="hint">Ein paar Sätze, damit du später siehst, wo du gestartet bist.</p>${field('rolle','Meine Rolle und mein Team','Ich führe … Personen im Bereich …')}${field('seit','Seit wann bin ich Führungskraft?','zum Beispiel seit 1. September')}${field('herkunft','Woher komme ich?','aus dem eigenen Team, aus einem anderen Bereich, von außen')}${field('fuehrung','Führen heißt für mich …','',true)}${field('anliegen','Was will ich aus diesen zwei Tagen mitnehmen?','Meine Hashtags: #… #…',true)}`;
     case 1: return `<h3>Mein Team in der Veränderung</h3><p class="hint">Denk an die Veränderungskurve.</p>${field('kurve.team','Wo steht mein Team gerade?','zum Beispiel Widerstand, rationale Einsicht …')}${field('kurve.ich','Wo stehe ich selbst?')}${field('kurve.braucht','Was braucht mein Team jetzt von mir?','',true)}`;
     case 2: return `<h3>Erwartungen klären</h3>${field('erw.fragen','Welche Fragen hat mein Team wahrscheinlich?','Urlaub, Homeoffice, Erreichbarkeit, Entscheidungen …',true)}${field('erw.antworten','Meine Antworten darauf','',true,'Und ehrlich: Was weiß ich noch nicht, bis wann kläre ich es?')}${field('erw.ich','Was erwarte ich von meinem Team?','',true)}${field('erw.fk','Was muss ich mit meiner eigenen Führungskraft klären?','',true)}${field('erw.termin','Wann führe ich das Erwartungsgespräch?')}`;
-    case 3: return `<h3>Mein Führungskorridor</h3>${field('korr.ziele','1 · Welche Ziele habe ich für meinen Bereich?','',true)}${field('korr.erw','2 · Was erwarte ich, damit wir die Ziele erreichen?','',true)}${field('korr.werte','3 · Welche Werte und Prinzipien gelten für unsere Zusammenarbeit?','',true)}${field('korr.komm','4 · Welche Kommunikation braucht es dafür?','Teamrunde, Einzelgespräche, Kanäle …',true)}`;
+    case 3: return `<h3>Mein Führungskorridor</h3>${field('korr.ziele','1 · Welche Ziele habe ich für meinen Bereich?','',true)}${field('korr.erw','2 · Was erwarte ich, damit wir die Ziele erreichen?','',true)}${field('korr.werte','3 · Welche Werte und Prinzipien gelten für unsere Zusammenarbeit?','',true)}${field('korr.komm','4 · Welche Kommunikation braucht es dafür?','Teamrunde, Einzelgespräche, Kanäle …',true)}<h3 style="margin-top:20px">Mein erstes OKR</h3><p class="hint">Kurzfristige Ziele für die nächsten drei Monate. Mehr dazu unter <a href="#korridor?to=okr">Führungskorridor</a>.</p>${field('korr.okr','Objective · Was wollen wir in drei Monaten erreichen?','',true)}${field('korr.kr','Key Results · Woran merken wir es? Mit Zahl und Datum','',true)}${field('korr.rhythmus','Unser Rhythmus · Stand-ups und Sprints','zum Beispiel Stand-up montags 9 Uhr, Sprint-Ende alle drei Wochen')}`;
     case 4: return `<h3>Fünf Grundbedürfnisse</h3><p class="hint">Was tust du konkret, um jedes Bedürfnis in deinem Team zu stärken?</p>${NEEDS.map((n,k)=>field('need.'+k,`${k+1} · ${n.t}`,'Ab Montag werde ich …')).join('')}`;
     case 5: return `<h3>Meine Matrix</h3><p class="hint">Erst dein Führungsverhalten und deine Fragen pro Feld. Dann ordnest du dein Team ein, mit Kürzeln statt Namen.</p>
       ${QUADS.map(q=>`<div class="player"><div class="lbl" style="margin-top:0">${q.t}</div>${field('sw.'+q.k+'.tun','So führe ich hier','',true)}${field('sw.'+q.k+'.fragen','Das frage ich','',true)}</div>`).join('')}
@@ -107,7 +123,7 @@ function summary(){
   let h=`<h3>Meine Situation</h3>${line('Rolle und Team',p.rolle)}${line('Führungskraft seit',p.seit)}${line('Herkunft',p.herkunft)}${line('Führen heißt für mich',p.fuehrung)}${line('Mein Anliegen',p.anliegen)}`;
   h+=`<h3>Mein Team in der Veränderung</h3>${line('Team',p.kurve?.team)}${line('Ich',p.kurve?.ich)}${line('Was mein Team braucht',p.kurve?.braucht)}`;
   h+=`<h3>Erwartungen</h3>${line('Fragen meines Teams',p.erw?.fragen)}${line('Meine Antworten',p.erw?.antworten)}${line('Was ich erwarte',p.erw?.ich)}${line('Mit meiner Führungskraft klären',p.erw?.fk)}${line('Erwartungsgespräch',p.erw?.termin)}`;
-  h+=`<h3>Mein Führungskorridor</h3>${line('Ziele',p.korr?.ziele)}${line('Erwartungen',p.korr?.erw)}${line('Werte und Prinzipien',p.korr?.werte)}${line('Kommunikation',p.korr?.komm)}`;
+  h+=`<h3>Mein Führungskorridor</h3>${line('Ziele',p.korr?.ziele)}${line('Erwartungen',p.korr?.erw)}${line('Werte und Prinzipien',p.korr?.werte)}${line('Kommunikation',p.korr?.komm)}${line('OKR: Objective',p.korr?.okr)}${line('OKR: Key Results',p.korr?.kr)}${line('OKR: Rhythmus',p.korr?.rhythmus)}`;
   h+=`<h3>Grundbedürfnisse</h3>${NEEDS.map((n,k)=>line(n.t,p.need?.[k])).join('')}`;
   h+=`<h3>Meine Matrix</h3>${QUADS.map(q=>line(q.t+', so führe ich',p.sw?.[q.k]?.tun)+line(q.t+', das frage ich',p.sw?.[q.k]?.fragen)).join('')}`;
   const tm=(p.team||[]).filter(m=>m.kz).map(m=>`${esc(m.kz)}${m.aufgabe?' bei '+esc(m.aufgabe):''}${m.q?': '+esc(QUADS.find(q=>q.k===m.q).t):''}${m.frage?' · Frage: '+esc(m.frage):''}`).join('<br>');
