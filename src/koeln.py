@@ -22,6 +22,27 @@ def foto(t, imgs, paras, eyebrow='Aus unserem Training'):
     return s
 
 
+URL = 'erstes-mal-fuehren-1-begleitraum.netlify.app'
+def trainer_mit_link():
+    s = dup('trainer')
+    tf = shape(s, 'Textfeld 30').text_frame
+    last = tf.paragraphs[-1]._p
+    neu = copy.deepcopy(last); last.addnext(neu)
+    from pptx.text.text import _Paragraph
+    para = _Paragraph(neu, tf)
+    para.runs[0].text = 'Dein Begleitraum: ' + URL
+    para.runs[0].hyperlink.address = 'https://' + URL
+    tf.paragraphs[-2].runs[0].hyperlink.address = 'https://susannetours.com'
+
+
+def qr_hint(s):
+    card(s, 0.45, 5.15, 7.6, 1.75, LIGHT)
+    s.shapes.add_picture('/home/claude/erstes-mal-fuehren/src/QR_Begleitraum.png', Inches(0.6), Inches(5.27), Inches(1.5), Inches(1.5))
+    tbox(s, 2.35, 5.4, 5.5, 1.4, [('Dein Begleitraum', 17, DARK, True, 0),
+        ('Alle Inhalte, Fotos und dein Startplan. Scanne den Code mit deinem Handy.', 14, SOFT, False, 4),
+        (URL, 12, PURPLE, True, 6)])
+
+
 def p(t, size=19, color=None, bold=False, before=12):
     return (t, size, color or DARK, bold, before)
 
@@ -71,7 +92,7 @@ def okr_wie():
 
 # ---------- Inhalt ----------
 haufe_title('Das erste Mal führen 1', 'Vom Rollenwechsel bis zu ersten Führungsgesprächen: dein Fundament für einen erfolgreichen Start in die Führung', 'image10.jpg')
-trainer()
+trainer_mit_link()
 agenda('Tag 1', [('09:00', 'Ankommen'), ('09:45', 'Die Veränderungskurve'), ('10:30', 'Perspektivwechsel'),
                  ('11:30', 'Erwartungen klären'), ('13:30', 'Dein Führungskorridor und OKR'), ('15:30', 'Fünf Grundbedürfnisse'),
                  ('16:15', 'Psychologische Sicherheit'), ('17:00', 'Ende')],
@@ -82,10 +103,10 @@ box('Wer bist du, was erwartest du?', 'Stell dich der Gruppe kurz vor:',
     'Welche Rolle hast du? Wie viele Mitarbeitende führst du? Was muss hier passieren, damit sich die zwei Tage für dich wirklich gelohnt haben?', 'Schreib deine Erwartungen dabei als Hashtag an das Flipchart, zum Beispiel #KritikgesprächeFühren.', 'ca. 1 bis 2 Minuten pro Person')
 
 chapter(1, 'Die Veränderungskurve')
-foto('Die Veränderungskurve', ['veraenderungskurve'], [
+qr_hint(foto('Die Veränderungskurve', ['veraenderungskurve'], [
     p('Jede Veränderung löst Gefühle aus: Schock, Widerstand, Verunsicherung, dann Ausprobieren und neue Sicherheit.'),
     p('Wer neu führt, ist selbst mitten in dieser Kurve. Und das Team auch.'),
-    p('Wo steht dein Team gerade? Und wo stehst du?', 19, PURPLE, True, 20)])
+    p('Wo steht dein Team gerade? Und wo stehst du?', 19, PURPLE, True, 20)]))
 pause('coffee', 'Kaffeepause', '10:15 bis 10:30 Uhr')
 
 chapter(2, 'Perspektivwechsel')
@@ -111,11 +132,11 @@ foto('Das Erwartungsgespräch', ['erwartungsgespraech'], [
 pause('lunch', 'Mittagspause', '12:30 bis 13:30 Uhr')
 
 chapter(4, 'Dein Führungskorridor')
-foto('Dein Führungskorridor', ['fuehrungskorridor'], [
+qr_hint(foto('Dein Führungskorridor', ['fuehrungskorridor'], [
     p('Der Korridor ist der Rahmen, in dem dein Team selbstständig arbeiten kann.'),
     p('Ziel: Wohin wollen wir?'), p('Erwartungen: Was braucht es dafür?', before=4),
     p('Werte und Prinzipien: Wie arbeiten wir zusammen?', before=4), p('Kommunikation: Wie bleiben wir im Gespräch?', before=4),
-    p('Je klarer der Korridor, desto mehr Freiraum hat dein Team.', 19, PURPLE, True, 20)])
+    p('Je klarer der Korridor, desto mehr Freiraum hat dein Team.', 19, PURPLE, True, 20)]))
 foto('Eure Erwartungswand', ['erwartungswand'], [
     p('Was erwartest du an dich selbst? An deine Mitarbeitenden? An deinen Chef?'),
     p('Eure Wand zeigt: Viele Erwartungen sind sich ähnlich. Ausgesprochen werden sie selten.'),
