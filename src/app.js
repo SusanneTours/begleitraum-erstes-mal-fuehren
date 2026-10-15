@@ -1,25 +1,9 @@
 /* ---------- Fotos für "Unsere Ergebnisse": Dateien in den Ordner fotos/ legen und hier eintragen ----------
    orte: kurve, perspektive, erwartungen, korridor, beduerfnisse, skillwill, augenhoehe, fragen, grow, schwierig  */
 const ERGEBNISSE = [
-  { titel: "Unsere Veränderungskurve", bild: "fotos/veraenderungskurve.jpg", orte: ["kurve"] },
-  { titel: "Was passiert mit dem Team bei einer neuen Führungskraft?", bild: "fotos/perspektivwechsel_pinnwand.jpg", orte: ["perspektive"] },
-  { titel: "Die Teamuhr", bild: "fotos/teamuhr.jpg", orte: ["perspektive"] },
-  { titel: "Das Erwartungsgespräch", bild: "fotos/erwartungsgespraech.jpg", orte: ["erwartungen"] },
-  { titel: "Unser Führungskorridor", bild: "fotos/fuehrungskorridor.jpg", orte: ["korridor"] },
-  { titel: "Eure Erwartungswand: an dich selbst, an deine Mitarbeitenden, an deinen Chef", bild: "fotos/erwartungswand.jpg", orte: ["korridor", "erwartungen"] },
-  { titel: "Kurzfristige Ziele mit OKR", bild: "fotos/okr.jpg", orte: ["korridor", "wandel"] },
-  { titel: "Bindung", bild: "fotos/bindung.jpg", orte: ["beduerfnisse"] },
-  { titel: "Orientierung und Kontrolle", bild: "fotos/kontrolle_orientierung.jpg", orte: ["beduerfnisse"] },
-  { titel: "Selbstwert", bild: "fotos/selbstwert.jpg", orte: ["beduerfnisse"] },
-  { titel: "Lustgewinn und Unlustvermeidung", bild: "fotos/unlust.jpg", orte: ["beduerfnisse"] },
-  { titel: "Kohärenz", bild: "fotos/kohaerenz.jpg", orte: ["beduerfnisse"] },
-  { titel: "Kohärenz: private Welt, Ausbildung, berufliche Welt", bild: "fotos/kohaerenz_kreise.jpg", orte: ["beduerfnisse"] },
-  { titel: "Drei Seiten psychologischer Sicherheit", bild: "fotos/psychologische_sicherheit.jpg", orte: ["beduerfnisse"] },
-  { titel: "Eure Matrix: Können und Wollen mit offenen Fragen", bild: "fotos/skill_will.jpg", orte: ["skillwill", "fragen"] },
-  { titel: "Der Eisberg", bild: "fotos/eisberg.jpg", orte: ["grow", "schwierig"] },
-  { titel: "Das GROW-Modell", bild: "fotos/grow.jpg", orte: ["grow"] },
+  // { titel: "Unsere Veränderungskurve", bild: "fotos/kurve.jpg", orte: ["kurve"] },
 ];
-const FOLIEN = 57; // Anzahl der Folienbilder in folien/
+const FOLIEN = 71; // Anzahl der Folienbilder in folien/
 
 /* ---------- Speicher (nur auf diesem Gerät) ---------- */
 const KEY = 'erstes-mal-fuehren-begleitraum-v1';
