@@ -1,5 +1,5 @@
 /* ---------- Fotos für "Unsere Ergebnisse": Dateien in den Ordner fotos/ legen und hier eintragen ----------
-   orte: kurve, perspektive, erwartungen, korridor, beduerfnisse, skillwill, augenhoehe, fragen, grow, schwierig  */
+   orte: kurve, perspektive, erwartungen, korridor, beduerfnisse, skillwill, augenhoehe, fragen, grow, schwierig, konflikte  */
 const ERGEBNISSE = [
   // { titel: "Unsere Veränderungskurve", bild: "fotos/kurve.jpg", orte: ["kurve"] },
 ];
@@ -138,6 +138,56 @@ function renderWiz(){
 $('#wPrev').addEventListener('click',()=>{ S.step=Math.max(0,(S.step||0)-1); save(); renderWiz(); window.scrollTo(0,0); });
 $('#wNext').addEventListener('click',()=>{ S.step=Math.min(STEPS.length-1,(S.step||0)+1); save(); renderWiz(); window.scrollTo(0,0); });
 
+
+/* ---------- Konflikte: Fälle ---------- */
+const FAELLE=[
+ {t:"Urlaub im Sommer",f:"Zwei Mitarbeitende wollen in den Sommerferien drei Wochen frei. Beide haben schulpflichtige Kinder. Beide waren als Erste da, sagen sie. Einer droht schon: „Dann melde ich mich halt krank.“",a:"Verteilungskonflikt",b:"Fairness und Orientierung: Wer bekommt was, nach welcher Regel?",s:"Mit beiden einzeln sprechen, dann gemeinsam eine Regel finden, die auch nächstes Jahr gilt."},
+ {t:"Der frühere Kollege",f:"Tom war bis vor drei Monaten dein Kollege. Im Teammeeting sagt er vor allen: „Früher hättest du das selbst nicht so gemacht.“ Seitdem kommt er zu Absprachen mit dir zu spät.",a:"Rollenkonflikt, mit Anteilen eines Beziehungskonflikts",b:"Selbstwert und Bindung: Tom hat einen Kollegen verloren und muss sich neu einordnen.",s:"Unter vier Augen ansprechen, die neue Rolle offen benennen und fragen, was er von dir braucht."},
+ {t:"Funkstille",f:"Seit einem Streit über eine verpatzte Übergabe gehen sich Lea und Jonas aus dem Weg. Informationen laufen nur noch über dich. Im Team wird schon getuschelt.",a:"Beziehungskonflikt, entstanden aus einem Sachkonflikt",b:"Selbstwert: Beide fühlen sich ungerecht beschuldigt.",s:"Erst einzeln sprechen, dann ein gemeinsames Gespräch moderieren. Nicht länger Bote spielen."},
+ {t:"Qualität oder Tempo",f:"Mara prüft jeden Bericht dreimal, bevor er rausgeht. Kai findet das übertrieben, der Kunde wartet. Beide kommen getrennt zu dir und wollen, dass du der anderen Person Bescheid sagst.",a:"Ziel- oder Wertekonflikt",b:"Kohärenz und Kontrolle: Beiden ist etwas anderes wichtig, beides ist berechtigt.",s:"Gemeinsam klären, was der Kunde wirklich braucht, und eine Regel vereinbaren, wann wie gründlich geprüft wird."},
+ {t:"Welche Zahlen gelten?",f:"Zwei Mitarbeitende streiten im Meeting, welche Zahlen in den Monatsbericht gehören: die aus dem alten System oder die aus dem neuen. Der Ton wird schärfer, die anderen schauen weg.",a:"Sachkonflikt",b:"Orientierung: Es ist unklar, was gilt.",s:"Die Frage klären oder klären lassen und festhalten, was ab jetzt gilt. Danach kurz nachfragen, wie es beiden mit dem Streit geht."},
+ {t:"Homeoffice",f:"Ein Teil des Teams ist fast immer im Homeoffice, andere sind jeden Tag vor Ort und fangen alles auf. In der Kaffeeküche fällt der Satz: „Die da zu Hause machen sich einen schönen Lenz.“",a:"Verteilungskonflikt mit Anteilen eines Beziehungskonflikts",b:"Fairness und Anerkennung: Wer vor Ort ist, fühlt sich nicht gesehen.",s:"Im Team offen ansprechen, Aufgaben vor Ort sichtbar machen und eine gemeinsame Regel vereinbaren."}];
+$('#faelle').innerHTML=FAELLE.map((c,i)=>`<div class="card fall"><span class="eyebrow">Fall ${i+1}</span><h3>${esc(c.t)}</h3><p>${esc(c.f)}</p><details><summary>Mögliche Auflösung zeigen</summary><div class="loes"><p style="margin:0 0 6px"><b>Konfliktart:</b> ${esc(c.a)}</p><p style="margin:0 0 6px"><b>Bedürfnis:</b> ${esc(c.b)}</p><p style="margin:0"><b>Erster Schritt:</b> ${esc(c.s)}</p></div></details></div>`).join('');
+
+/* ---------- Konflikte: Stil-Test ---------- */
+const STILE={
+ D:{t:"Durchsetzen",gut:"Du schaffst Klarheit und entscheidest, wenn es brennt.",falle:"Dein Team widerspricht irgendwann nicht mehr. Probleme kommen spät auf den Tisch.",tipp:"Erst fragen, dann entscheiden: „Wie siehst du das?“"},
+ K:{t:"Kooperieren",gut:"Ihr findet Lösungen, die wirklich tragen, weil beide Seiten gehört werden.",falle:"Das kostet Zeit. Nicht jede Kleinigkeit braucht eine große Runde.",tipp:"Bei kleinen Themen bewusst schneller entscheiden."},
+ M:{t:"Kompromiss",gut:"Du bringst Dinge schnell voran und hältst den Laden am Laufen.",falle:"Beide sind halb zufrieden. Das eigentliche Problem bleibt liegen.",tipp:"Vor dem Mittelweg fragen: „Worum geht es dir wirklich?“"},
+ N:{t:"Nachgeben",gut:"Du hältst Beziehungen und gönnst anderen etwas.",falle:"Deine Anliegen gehen unter. Dein Team weiß nicht, wofür du stehst.",tipp:"Sag in der nächsten Diskussion einmal klar, was dir wichtig ist."},
+ V:{t:"Vermeiden",gut:"Du gibst Hitzköpfen Zeit und wählst deine Kämpfe.",falle:"Konflikte wachsen im Verborgenen und kommen größer zurück.",tipp:"Ein Gespräch, das du gerade aufschiebst, in dieser Woche führen."}};
+const STILQ=[
+ ["D","Wenn ich überzeugt bin, kämpfe ich für meine Position."],
+ ["N","Ich stelle meine Wünsche zurück, damit die Stimmung gut bleibt."],
+ ["V","Unangenehme Themen schiebe ich gern auf."],
+ ["M","Ich schlage schnell einen Mittelweg vor, damit wir weiterkommen."],
+ ["K","Ich will verstehen, was der anderen Person wirklich wichtig ist."],
+ ["V","Ich hoffe oft, dass sich ein Konflikt von allein erledigt."],
+ ["D","In Diskussionen will ich am Ende recht behalten."],
+ ["K","Ich suche eine Lösung, mit der beide voll zufrieden sind, auch wenn es länger dauert."],
+ ["N","Ich gebe lieber nach, als jemanden zu verärgern."],
+ ["M","Jeder gibt ein bisschen nach. So löse ich die meisten Konflikte."],
+ ["D","Wenn es schnell gehen muss, entscheide ich und erkläre später."],
+ ["V","Wenn es Streit gibt, halte ich mich lieber raus."],
+ ["K","Ich lege meine Sicht offen auf den Tisch und frage nach der Sicht der anderen."],
+ ["N","Wenn jemand sehr betroffen ist, lasse ich meine eigene Sicht fallen."],
+ ["M","Ich bin zufrieden, wenn beide etwas bekommen, auch wenn keiner alles bekommt."]];
+function renderStil(){
+  const A=S.stil||(S.stil={});
+  $('#stiltest').innerHTML=STILQ.map(([k,q],i)=>`<div class="stq"><p>${i+1}. ${esc(q)}</p><div class="sc">${[1,2,3,4,5].map(v=>`<button type="button" data-q="${i}" data-v="${v}" class="${A[i]==v?'on':''}" aria-label="${v} von 5">${v}</button>`).join('')}</div><div class="lg"><span>trifft gar nicht zu</span><span>trifft voll zu</span></div></div>`).join('');
+  const n=Object.keys(A).length;
+  if(n<STILQ.length){ $('#stilres').innerHTML=`<div class="card lav"><p style="margin:0">Noch ${STILQ.length-n} von ${STILQ.length} Sätzen offen. Dann siehst du hier dein Ergebnis.</p>${n?'<button class="btn ghost small" id="stilDel" style="margin-top:10px">Antworten löschen</button>':''}</div>`; }
+  else {
+    const sum={};Object.keys(STILE).forEach(k=>sum[k]=0);STILQ.forEach(([k],i)=>sum[k]+=+A[i]);
+    const order=Object.keys(sum).sort((a,b)=>sum[b]-sum[a]);const max=sum[order[0]];
+    const tops=order.filter(k=>sum[k]===max);
+    $('#stilres').innerHTML=`<div class="card"><span class="eyebrow">Dein Ergebnis</span><h3>${tops.map(k=>STILE[k].t).join(' und ')}</h3>${order.map(k=>`<div class="bar ${sum[k]===max?'top':''}"><span>${STILE[k].t}</span><i><em style="width:${Math.round((sum[k]-3)/12*100)}%"></em></i><span>${sum[k]}</span></div>`).join('')}<p class="hint" style="margin-top:8px">Pro Stil sind 3 bis 15 Punkte möglich.</p></div>`+tops.map(k=>{const s=STILE[k];return `<div class="card lav"><span class="eyebrow">${esc(s.t)}</span><p><b>Das kann dein Stil:</b> ${esc(s.gut)}</p><p><b>Hier wird er zur Falle:</b> ${esc(s.falle)}</p><p style="margin:0"><b>Probier mal:</b> ${esc(s.tipp)}</p></div>`}).join('')+`<div class="task"><span class="eyebrow">Zum Nachdenken</span><b>Wann hilft dir dein Stil, wann steht er dir im Weg?</b><p style="margin:4px 0 0">Und welcher Weg fällt dir am schwersten? Genau den lohnt es sich zu üben.</p></div><button class="btn ghost small" id="stilDel">Antworten löschen</button><div style="height:12px"></div>`;
+  }
+  const del=$('#stilDel'); if(del) del.addEventListener('click',()=>{ S.stil={}; save(); renderStil(); toast('Gelöscht'); });
+}
+$('#stiltest').addEventListener('click',e=>{ const b=e.target.closest('[data-q]'); if(!b) return; (S.stil||(S.stil={}))[b.dataset.q]=+b.dataset.v; save(); const y=window.scrollY; renderStil(); window.scrollTo(0,y); });
+renderStil();
+
 /* ---------- Eingaben speichern ---------- */
 function bindInputs(root){
   root.querySelectorAll('[data-save]').forEach(el=>{
@@ -155,6 +205,7 @@ const SENT=[
  ["Kritik ansprechen",["Mir ist aufgefallen, dass … Wie siehst du das?","In den letzten zwei Wochen ist dreimal … passiert. Das hat dazu geführt, dass …","Ich habe beobachtet, dass … Bei mir kommt das so an: … Ich wünsche mir, dass …","Mir geht es nicht um Schuld. Mir geht es darum, wie wir das künftig lösen.","Ich schätze deine Arbeit bei … Genau deshalb spreche ich offen an, was mir bei … fehlt.","Was brauchst du, damit das ab jetzt klappt?"]],
  ["Wenn jemand nicht redet",["Mir fällt auf, dass du gerade sehr still bist. Ist etwas?","Ich weiß, dass … Mir ist wichtig, dass … Ich bin offen für …","Liegt es eher an der Aufgabe, an der Zusammenarbeit oder an etwas ganz anderem?","Du musst mir das nicht jetzt sagen. Lass uns am … noch einmal darüber sprechen.","Ich brauche von dir bis … eine klare Rückmeldung, ob das klappt.","Das freut mich. Mir ist trotzdem aufgefallen, dass … Darüber möchte ich mit dir sprechen.","Auf einer Skala von 1 bis 10: Wie zufrieden bist du selbst damit? Was fehlt zur 10?","Für dich ist es gut, für mich noch nicht. Ich erwarte, dass … Lass uns in zwei Wochen schauen, wie es läuft."]],
  ["Wenn es emotional wird",["Das ist wichtig. Was muss ich verstehen?","Ich merke, dass dich das sehr beschäftigt. Erzähl mir mehr.","Lass uns kurz durchatmen. Magst du einen Kaffee?","Wie sähe ein guter Weg für dich aus?"]],
+ ["Konflikte ansprechen",["Mir ist aufgefallen, dass es zwischen euch gerade hakt. Wie erlebst du das?","Ich möchte das ansprechen, solange es noch klein ist.","Was ist dir dabei besonders wichtig?","Wofür brauchst du das?","Ich höre zwei berechtigte Anliegen. Wie bekommen wir beide unter einen Hut?","Ich will nicht entscheiden, wer recht hat. Ich will, dass ihr wieder gut zusammenarbeitet."]],
  ["Erwartungen klären",["Mir ist in der Zusammenarbeit besonders wichtig, dass …","Was brauchst du von mir, damit du gut arbeiten kannst?","Was soll so bleiben, wie es ist? Was soll sich ändern?","Das weiß ich heute noch nicht. Ich sage dir bis … Bescheid."]],
  ["Vereinbaren und nachfassen",["Lass uns kurz festhalten: Du machst … bis … Ich mache …","Wann schauen wir wieder gemeinsam drauf?","Danke für das offene Gespräch gestern. Hier noch einmal kurz, was wir vereinbart haben: …"]]];
 $('#sentences').innerHTML = SENT.map(([t,arr])=>`<div class="card"><h3>${esc(t)}</h3>${arr.map(s=>`<div class="sent"><q>${esc(s)}</q><button class="btn ghost small" data-copy="${esc(s)}" aria-label="Kopieren">Kopieren</button></div>`).join('')}</div>`).join('');

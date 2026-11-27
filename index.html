@@ -270,6 +270,38 @@ details.more .b{padding:0 20px 16px}
 .korr .card{margin:0;border-top:5px solid var(--violet)}
 @media (max-width:860px){.korr{grid-template-columns:1fr}.trans{grid-template-columns:1fr}}
 [id]{scroll-margin-top:76px}
+/* ---------- Konflikte ---------- */
+.ko-list .card .say{font-size:14.5px;color:var(--ink-soft);margin-bottom:0}
+.ko-list .card .say b{color:var(--violet)}
+.ko-grid{display:grid;grid-template-columns:28px 1fr;grid-template-rows:1fr 28px;gap:6px}
+.ko-grid .ax-y{writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;font-size:12.5px;font-weight:700;color:var(--ink-soft)}
+.ko-grid .ax-x{grid-column:2;text-align:center;font-size:12.5px;font-weight:700;color:var(--ink-soft)}
+.ko-field{position:relative;min-height:240px;border-radius:12px;background:linear-gradient(135deg,#FAE6E6 0%,var(--lav) 50%,#E3F4E4 100%)}
+.ko-field span{position:absolute;background:#fff;border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;color:var(--dark);box-shadow:0 1px 3px rgba(25,3,51,.12)}
+.esk{display:grid;gap:10px;margin:0 0 16px}
+.esk>div{border-radius:14px;padding:16px 18px}
+.esk b{display:block;font-size:18px;margin-bottom:4px}
+.esk p{margin:0;font-size:15px}
+.esk .e1{background:var(--lav)}.esk .e1 b{color:var(--violet)}
+.esk .e2{background:var(--violet);color:#fff}
+.esk .e3{background:var(--dark);color:#fff}.esk .e3 b{color:var(--violet-4)}
+.steps5{display:grid;gap:10px;margin:0 0 16px}
+.steps5>div{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.steps5 span{flex:none;width:34px;height:34px;border-radius:50%;background:var(--violet);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center}
+.steps5 b{display:block;font-size:17px}
+.steps5 q{display:block;quotes:"„" "“";color:var(--ink-soft);margin-top:2px}
+.stq{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:0 0 10px}
+.stq p{margin:0 0 10px;font-weight:700;font-size:15.5px}
+.stq .sc{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.stq .sc button{min-height:42px;border:1.5px solid var(--violet-4);background:#fff;border-radius:10px;font-weight:700;color:var(--violet);cursor:pointer;font-size:15px}
+.stq .sc button.on{background:var(--violet);border-color:var(--violet);color:#fff}
+.stq .lg{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-soft);margin-top:4px}
+.bar{display:grid;grid-template-columns:118px 1fr 34px;gap:10px;align-items:center;margin:8px 0;font-size:14.5px;font-weight:700}
+.bar i{display:block;height:12px;border-radius:99px;background:var(--lav);overflow:hidden}
+.bar i em{display:block;height:100%;background:var(--violet);border-radius:99px}
+.bar.top{color:var(--violet)}
+.fall summary{cursor:pointer;font-weight:700;color:var(--violet);margin-top:8px}
+.fall .loes{background:var(--lav);border-radius:10px;padding:10px 12px;margin-top:8px;font-size:14.5px}
 
 </style>
 
@@ -294,9 +326,10 @@ details.more .b{padding:0 20px 16px}
   <a href="#fragen"><span class="n">8</span>Offene Fragen</a>
   <a href="#grow"><span class="n">9</span>Gespräche führen</a>
   <a href="#schwierig"><span class="n">10</span>Schwierige Gespräche</a>
+  <a href="#konflikte"><span class="n">11</span>Konflikte klären</a>
   <div class="navgroup">Zusatzthemen</div>
-  <a href="#wandel"><span class="n">11</span>Führen im Wandel</a>
-  <a href="#druck"><span class="n">12</span>Unter Druck führen</a>
+  <a href="#wandel"><span class="n">12</span>Führen im Wandel</a>
+  <a href="#druck"><span class="n">13</span>Unter Druck führen</a>
   <div class="navgroup">Für dich</div>
   <a href="#startplan"><span class="n">✎</span>Mein Startplan</a>
   <a href="#saetze"><span class="n">❝</span>Satzstarter</a>
@@ -334,12 +367,13 @@ details.more .b{padding:0 20px 16px}
     <a class="ntile" href="#fragen"><div class="n">08</div><b>Offene Fragen</b><span>Die Welt des anderen verstehen</span></a>
     <a class="ntile" href="#grow"><div class="n">09</div><b>Gespräche führen</b><span>Ziel, Realität, Möglichkeiten, Vereinbarung</span></a>
     <a class="ntile" href="#schwierig"><div class="n">10</div><b>Schwierige Gespräche</b><span>Kritik ansprechen, Blockaden lösen</span></a>
+    <a class="ntile" href="#konflikte"><div class="n">11</div><b>Konflikte klären</b><span>Konfliktarten, dein Stil, das Gespräch</span></a>
   </nav>
 
   <h3 class="tgroup">Zusatzthemen</h3>
   <nav class="ntiles">
-    <a class="ntile" href="#wandel"><div class="n">11</div><b>Führen im Wandel</b><span>VUKA und die Antwort darauf</span></a>
-    <a class="ntile" href="#druck"><div class="n">12</div><b>Unter Druck führen</b><span>Stress, Prioritäten, Nein sagen</span></a>
+    <a class="ntile" href="#wandel"><div class="n">12</div><b>Führen im Wandel</b><span>VUKA und die Antwort darauf</span></a>
+    <a class="ntile" href="#druck"><div class="n">13</div><b>Unter Druck führen</b><span>Stress, Prioritäten, Nein sagen</span></a>
   </nav>
 
   <h3 class="tgroup">Für dich</h3>
@@ -395,7 +429,7 @@ details.more .b{padding:0 20px 16px}
     <tr class="pause"><td>12:30</td><td>Mittagspause bis 13:30 Uhr</td></tr>
     <tr><td>13:30</td><td><b>Gespräche führen</b><small>Dein Gesprächsplan und ein geprobtes Gespräch im Trio</small></td></tr>
     <tr class="pause"><td>15:15</td><td>Kaffeepause bis 15:30 Uhr</td></tr>
-    <tr><td>15:30</td><td><b>Schwierige Gespräche</b><small>Dein blinder Fleck, Kritik ansprechen und wenn jemand nicht mit dir redet</small></td></tr>
+    <tr><td>15:30</td><td><b>Schwierige Gespräche und Konflikte</b><small>Dein blinder Fleck, Kritik ansprechen, Konfliktarten, dein Konfliktstil und das Konfliktgespräch</small></td></tr>
     <tr><td>16:30</td><td><b>Dein Startplan</b><small>Deine ersten Schritte in den nächsten 30 Tagen</small></td></tr>
     <tr><td>17:00</td><td><b>Ende</b></td></tr>
   </table>
@@ -736,6 +770,94 @@ details.more .b{padding:0 20px 16px}
   <div style="height:20px"></div>
 </section>
 
+<!-- 11 KONFLIKTE -->
+<section class="page" id="p-konflikte">
+  <div class="hero" style="background-image:url('bilder/ablauf.jpg');--img:url('bilder/ablauf.jpg')"><div class="in"><span class="eyebrow">Tag 2 · Modul 11</span><h2>Konflikte klären</h2><p>Woher Konflikte kommen, wie du sie früh erkennst und wie du das Gespräch führst, bevor es eskaliert.</p></div></div>
+  <div class="subnav" id="konav"><button data-sub="entstehung" class="on">Wie Konflikte entstehen</button><button data-sub="arten">Konfliktarten</button><button data-sub="faelle">Fälle</button><button data-sub="stil">Dein Konfliktstil</button><button data-sub="antreiber">Deine Antreiber</button><button data-sub="frueh">Früh reagieren</button><button data-sub="gespraech">Das Konfliktgespräch</button></div>
+
+  <div class="sub show" id="sub-entstehung">
+    <div class="card"><h3>Gestritten wird über die Sache. Gemeint ist oft etwas anderes.</h3><p>Zwei streiten über den Dienstplan. Unter der Oberfläche geht es um Fairness, um Anerkennung oder um das Gefühl, übergangen zu werden. Wer nur das Sachproblem löst, hat den Konflikt nächste Woche wieder auf dem Tisch.</p></div>
+    <h3 class="sec">Vom verletzten Bedürfnis zum Konflikt</h3>
+    <div class="drei">
+      <div><b>1 · Bedürfnis</b><p>Ein Grundbedürfnis wird verletzt. Jemand fühlt sich übergangen, ungerecht behandelt oder nicht gesehen.</p></div>
+      <div><b>2 · Gefühl</b><p>Ärger, Kränkung, Unsicherheit.</p></div>
+      <div><b>3 · Bewertung</b><p>Im Kopf entsteht eine Geschichte.</p><q>Der will mich vorführen.</q></div>
+      <div><b>4 · Verhalten</b><p>Rückzug, spitze Bemerkungen, Dienst nach Vorschrift.</p></div>
+    </div>
+    <div class="card lav"><span class="eyebrow">Die Frage dahinter</span><h3>Welches Bedürfnis ist hier verletzt?</h3><p>Bindung, Orientierung und Kontrolle, Selbstwert, Lustgewinn oder Kohärenz. Du kennst die fünf schon von Tag 1. Wenn du weißt, was fehlt, weißt du, wo du ansetzen kannst.</p><a class="btn ghost small" href="#beduerfnisse">Die fünf Grundbedürfnisse</a></div>
+    <div class="card dk"><span class="eyebrow">Interessen statt Positionen</span><p style="margin-top:6px">Zwei streiten um eine Orange. Am Ende wird sie halbiert. Dabei wollte die eine nur den Saft, die andere nur die Schale für einen Kuchen. Frag deshalb nicht nur, was jemand will. Frag: „Wofür brauchst du das?“</p></div>
+  </div>
+
+  <div class="sub" id="sub-arten">
+    <p class="lead">Wenn du weißt, welche Art Konflikt vor dir liegt, weißt du, was hilft. Oft steckt mehr als eine Art drin.</p>
+    <div class="ko-list">
+      <div class="card"><span class="eyebrow">Sachkonflikt</span><h3>Wir sehen die Fakten unterschiedlich.</h3><p>Welche Zahlen gelten? Welcher Weg ist technisch richtig?</p><p class="say"><b>Was hilft:</b> Fakten gemeinsam klären, Kriterien festlegen.</p></div>
+      <div class="card"><span class="eyebrow">Verteilungskonflikt</span><h3>Es ist nicht genug für alle da.</h3><p>Urlaub, Homeoffice-Tage, beliebte Aufgaben, Budget.</p><p class="say"><b>Was hilft:</b> faire, transparente Regeln, die für alle gelten.</p></div>
+      <div class="card"><span class="eyebrow">Rollenkonflikt</span><h3>Wer darf hier was?</h3><p>Unklare Zuständigkeiten. Oder du warst gestern noch Kollegin oder Kollege und führst heute.</p><p class="say"><b>Was hilft:</b> Rolle und Erwartungen klar aussprechen.</p></div>
+      <div class="card"><span class="eyebrow">Beziehungskonflikt</span><h3>Wir können nicht miteinander.</h3><p>Kränkungen, Misstrauen, alte Geschichten. Oft das, was übrig bleibt, wenn andere Konflikte nicht geklärt wurden.</p><p class="say"><b>Was hilft:</b> ein Gespräch über das Miteinander, nicht über die Sache.</p></div>
+      <div class="card"><span class="eyebrow">Ziel- oder Wertekonflikt</span><h3>Uns ist Unterschiedliches wichtig.</h3><p>Qualität oder Tempo? Genauigkeit oder Pragmatismus?</p><p class="say"><b>Was hilft:</b> das gemeinsame Ziel suchen und eine Regel für den Alltag vereinbaren.</p></div>
+    </div>
+  </div>
+
+  <div class="sub" id="sub-faelle">
+    <div class="task"><span class="eyebrow">Aufgabe</span><b>Euer Fall</b><p style="margin:4px 0 0">Welche Konfliktart steckt dahinter? Welches Bedürfnis ist verletzt? Was ist dein erster Schritt als Führungskraft?</p></div>
+    <div id="faelle"></div>
+  </div>
+
+  <div class="sub" id="sub-stil">
+    <div class="card"><h3>Wie gehst du mit Konflikten um?</h3><p>Es gibt fünf typische Wege. Jeder passt in manchen Situationen. Schwierig wird es, wenn du immer denselben nimmst. Lies die Sätze und klicke an, wie sehr sie auf dich zutreffen. Denk dabei an Konflikte im Job.</p><p class="hint" style="margin:0">Deine Antworten bleiben auf deinem Gerät.</p></div>
+    <div id="stiltest"></div>
+    <div id="stilres"></div>
+    <h3 class="sec">Die fünf Wege im Überblick</h3>
+    <div class="card"><div class="ko-grid" role="img" aria-label="Fünf Konfliktstile, angeordnet nach Blick auf das eigene Anliegen und Blick auf die anderen">
+      <div class="ax-y">Mein Anliegen ↑</div>
+      <div class="ko-field">
+        <span style="left:4%;top:6%">Durchsetzen</span><span style="right:4%;top:6%">Kooperieren</span><span style="left:50%;top:44%;transform:translateX(-50%)">Kompromiss</span><span style="left:4%;bottom:6%">Vermeiden</span><span style="right:4%;bottom:6%">Nachgeben</span>
+      </div>
+      <div></div><div class="ax-x">Blick auf die anderen →</div>
+    </div></div>
+  </div>
+
+  <div class="sub" id="sub-antreiber">
+    <div class="card"><h3>Was dich im Konflikt antreibt</h3><p>Unter Druck melden sich unsere inneren Antreiber. Sie erklären oft, warum wir im Konflikt immer wieder gleich reagieren. Schau auf dein Handout: Welche zwei Antreiber sind bei dir am stärksten? Und passt das zu deinem Konfliktstil?</p></div>
+    <div class="ko-list">
+      <div class="card"><span class="eyebrow">Mach es allen recht</span><h3>Ich will, dass alle zufrieden sind.</h3><p>Im Konflikt oft: nachgeben, Kritik weichspülen, das Gespräch aufschieben.</p><p class="say"><b>Erlauber:</b> Ich darf Nein sagen und werde trotzdem gemocht.</p></div>
+      <div class="card"><span class="eyebrow">Sei stark</span><h3>Ich mach das mit mir allein aus.</h3><p>Im Konflikt oft: hart bleiben, keine Gefühle zeigen, sich keine Hilfe holen.</p><p class="say"><b>Erlauber:</b> Ich darf zeigen, was mich berührt, und mir Unterstützung holen.</p></div>
+      <div class="card"><span class="eyebrow">Sei perfekt</span><h3>Es muss richtig sein.</h3><p>Im Konflikt oft: über Details streiten, recht behalten wollen, Fehler anderer schwer stehen lassen.</p><p class="say"><b>Erlauber:</b> Gut ist gut genug.</p></div>
+      <div class="card"><span class="eyebrow">Beeil dich</span><h3>Hauptsache, es geht weiter.</h3><p>Im Konflikt oft: schneller Kompromiss, durchentscheiden, nicht richtig zuhören.</p><p class="say"><b>Erlauber:</b> Ich darf mir Zeit nehmen.</p></div>
+      <div class="card"><span class="eyebrow">Streng dich an</span><h3>Ohne Mühe ist es nichts wert.</h3><p>Im Konflikt oft: endlos diskutieren, jeden Konflikt zum Kraftakt machen.</p><p class="say"><b>Erlauber:</b> Es darf auch leicht gehen.</p></div>
+    </div>
+    <div class="task"><span class="eyebrow">Für dich</span><b>Dein Erlauber für den nächsten Konflikt</b><p style="margin:4px 0 0">Welcher Satz hilft dir, im nächsten Konflikt anders zu reagieren als sonst?</p><textarea data-save="konflikt.erlauber" placeholder="Mein Erlauber …" style="margin-top:10px"></textarea></div>
+  </div>
+
+  <div class="sub" id="sub-frueh">
+    <div class="card"><h3>Warum du früh reagieren solltest</h3><p>Konflikte haben eine Eigendynamik. Mit jeder Stufe wird es schwerer, sie selbst zu lösen. Am Anfang reicht oft ein offenes Gespräch. Später braucht es Hilfe von außen.</p></div>
+    <div class="esk">
+      <div class="e1"><b>Stufe 1 bis 3 · Gemeinsam lösen</b><p>Die Meinungen verhärten sich, Gespräche werden schärfer. Beide wollen aber noch eine Lösung. <strong>Hier kannst du als Führungskraft viel bewegen.</strong></p></div>
+      <div class="e2"><b>Stufe 4 bis 6 · Gewinnen wollen</b><p>Es bilden sich Lager, jemand verliert das Gesicht, es fallen Drohungen. Jetzt geht es ums Recht behalten.</p></div>
+      <div class="e3"><b>Stufe 7 bis 9 · Beide verlieren</b><p>Es geht nur noch darum, dem anderen zu schaden, auch auf eigene Kosten.</p></div>
+    </div>
+    <div class="card lav"><span class="eyebrow">Frühe Signale</span><ul class="clean"><li>Augenrollen, Seufzen, Schweigen im Meeting</li><li>Informationen laufen nur noch über dich</li><li>Grüppchen, Gespräche hinter vorgehaltener Hand</li><li>„Passt schon“ als Standardantwort</li></ul></div>
+  </div>
+
+  <div class="sub" id="sub-gespraech">
+    <p class="lead">Fünf Schritte, mit denen du einen Konflikt ansprichst, ohne dass dein Gegenüber in die Verteidigung geht.</p>
+    <div class="steps5">
+      <div><span>1</span><div><b>Ansprechen</b><q>Mir ist aufgefallen, dass …</q></div></div>
+      <div><span>2</span><div><b>Wirkung beschreiben</b><q>Das führt dazu, dass …</q></div></div>
+      <div><span>3</span><div><b>Zuhören</b><q>Wie siehst du das?</q></div></div>
+      <div><span>4</span><div><b>Bedürfnis klären</b><q>Was ist dir dabei wichtig?</q></div></div>
+      <div><span>5</span><div><b>Vereinbaren</b><q>Was machen wir ab jetzt? Wann schauen wir wieder drauf?</q></div></div>
+    </div>
+    <div class="card"><h3>Wenn du zwischen zwei Mitarbeitenden vermittelst</h3><ul class="clean"><li>Erst einzeln sprechen, dann gemeinsam.</li><li>Jede Person erzählt ihre Sicht, die andere hört zu, ohne zu unterbrechen.</li><li>Du fasst zusammen, was beiden wichtig ist.</li><li>Die Lösung kommt von den beiden. Du achtest darauf, dass sie konkret wird.</li></ul></div>
+    <div class="card dk"><span class="eyebrow">Und die Augenhöhe?</span><p style="margin-top:6px">Achte im Gespräch darauf, aus welchem Ich-Zustand du sprichst. Wer im Konflikt ins kritische Eltern-Ich rutscht, bekommt Trotz oder Rückzug zurück.</p><a class="btn light small" href="#augenhoehe" style="margin-top:10px">Zu den Ich-Zuständen</a></div>
+    <a class="btn" href="#saetze">❝ Satzstarter für Konflikte</a>
+    <div style="height:16px"></div>
+  </div>
+  <div class="unsere-fotos" data-ort="konflikte"></div>
+  <div style="height:20px"></div>
+</section>
+
 <!-- SCHWEIGEN -->
 <section class="page" id="p-schweigen">
   <div class="hero" style="background-image:url('bilder/schweigen.jpg');--img:url('bilder/schweigen.jpg')"><div class="in"><span class="eyebrow">Für dich</span><h2>Wenn jemand nicht mit dir redet</h2><p>Schweigen ist keine Zustimmung. So kommst du wieder ins Gespräch, ohne Druck aufzubauen.</p></div></div>
@@ -770,7 +892,7 @@ details.more .b{padding:0 20px 16px}
 
 <!-- 11 WANDEL -->
 <section class="page" id="p-wandel">
-  <div class="hero" style="background-image:url('bilder/wandel.jpg');--img:url('bilder/wandel.jpg')"><div class="in"><span class="eyebrow">Zusatzthema 11</span><h2>Führen im Wandel</h2><p>Wenn sich ständig etwas verändert, brauchst du keinen perfekten Plan. Du brauchst eine klare Haltung.</p></div></div>
+  <div class="hero" style="background-image:url('bilder/wandel.jpg');--img:url('bilder/wandel.jpg')"><div class="in"><span class="eyebrow">Zusatzthema 12</span><h2>Führen im Wandel</h2><p>Wenn sich ständig etwas verändert, brauchst du keinen perfekten Plan. Du brauchst eine klare Haltung.</p></div></div>
   <div class="card"><h3>VUKA: wie sich die Arbeitswelt anfühlt</h3><p>Viele Führungskräfte erleben ihren Alltag so: Pläne gelten nur kurz, Informationen fehlen, alles hängt mit allem zusammen, und oft gibt es nicht die eine richtige Antwort. Dafür gibt es ein Wort: VUKA.</p></div>
   <div class="grid2">
     <div class="card"><span class="eyebrow">V</span><h3>Volatil</h3><p>Alles ändert sich schnell und oft.</p></div>
@@ -798,7 +920,7 @@ details.more .b{padding:0 20px 16px}
 
 <!-- 12 DRUCK -->
 <section class="page" id="p-druck">
-  <div class="hero" style="background-image:url('bilder/druck.jpg');--img:url('bilder/druck.jpg')"><div class="in"><span class="eyebrow">Zusatzthema 12</span><h2>Unter Druck führen</h2><p>Wenn alles gleichzeitig wichtig scheint: wie du Prioritäten setzt und deine Kraft dort einsetzt, wo sie wirkt.</p></div></div>
+  <div class="hero" style="background-image:url('bilder/druck.jpg');--img:url('bilder/druck.jpg')"><div class="in"><span class="eyebrow">Zusatzthema 13</span><h2>Unter Druck führen</h2><p>Wenn alles gleichzeitig wichtig scheint: wie du Prioritäten setzt und deine Kraft dort einsetzt, wo sie wirkt.</p></div></div>
   <div class="subnav" id="drnav"><button data-sub="einfluss" class="on">Einflusskreis</button><button data-sub="prio">Prioritäten</button><button data-sub="nein">Nein sagen</button><button data-sub="kraft">Kraft tanken</button></div>
   <div class="sub show" id="sub-einfluss">
     <div class="card"><h3>Stress entsteht im Kopf und im Kalender</h3><p>Stress entsteht, wenn die Anforderungen größer wirken als das, was wir zur Verfügung haben: Zeit, Wissen, Unterstützung. Gerade in der neuen Rolle kommt vieles auf einmal. Zwei Fragen helfen, wieder Boden unter die Füße zu bekommen.</p></div>
@@ -893,6 +1015,8 @@ details.more .b{padding:0 20px 16px}
     <li>Johari-Fenster: Joseph Luft und Harrington Ingham (1955).</li>
     <li>VUKA und VUKA Prime: Bob Johansen, Leaders Make the Future.</li>
     <li>Einflusskreis: Stephen R. Covey, Die 7 Wege zur Effektivität. Wichtig und dringend: nach Dwight D. Eisenhower.</li>
+    <li>Konflikte: Friedrich Glasl, Konfliktmanagement. Haupt 2020 (Eskalationsstufen). Kenneth W. Thomas und Ralph H. Kilmann, Thomas-Kilmann Conflict Mode Instrument (fünf Konfliktstile, der Selbsttest hier ist eine eigene vereinfachte Fassung). Roger Fisher, William Ury, Das Harvard-Konzept (Interessen statt Positionen).</li>
+    <li>Innere Antreiber: Taibi Kahler, Transaktionsanalyse.</li>
     <li>Schwierige Gespräche: Harvard Business Review, Having Difficult Conversations (2025). Amy Gallo, Getting Along (2022).</li>
   </ul></div>
   <p class="foot">Erstellt von Susanne Tours, selbstständige Trainerin · <a href="https://susannetours.com" target="_blank" rel="noopener">susannetours.com</a></p>
@@ -972,7 +1096,7 @@ details.more .b{padding:0 20px 16px}
 
 <script>
 /* ---------- Fotos für "Unsere Ergebnisse": Dateien in den Ordner fotos/ legen und hier eintragen ----------
-   orte: kurve, perspektive, erwartungen, korridor, beduerfnisse, skillwill, augenhoehe, fragen, grow, schwierig  */
+   orte: kurve, perspektive, erwartungen, korridor, beduerfnisse, skillwill, augenhoehe, fragen, grow, schwierig, konflikte  */
 const ERGEBNISSE = [
   // { titel: "Unsere Veränderungskurve", bild: "fotos/kurve.jpg", orte: ["kurve"] },
 ];
@@ -1111,6 +1235,56 @@ function renderWiz(){
 $('#wPrev').addEventListener('click',()=>{ S.step=Math.max(0,(S.step||0)-1); save(); renderWiz(); window.scrollTo(0,0); });
 $('#wNext').addEventListener('click',()=>{ S.step=Math.min(STEPS.length-1,(S.step||0)+1); save(); renderWiz(); window.scrollTo(0,0); });
 
+
+/* ---------- Konflikte: Fälle ---------- */
+const FAELLE=[
+ {t:"Urlaub im Sommer",f:"Zwei Mitarbeitende wollen in den Sommerferien drei Wochen frei. Beide haben schulpflichtige Kinder. Beide waren als Erste da, sagen sie. Einer droht schon: „Dann melde ich mich halt krank.“",a:"Verteilungskonflikt",b:"Fairness und Orientierung: Wer bekommt was, nach welcher Regel?",s:"Mit beiden einzeln sprechen, dann gemeinsam eine Regel finden, die auch nächstes Jahr gilt."},
+ {t:"Der frühere Kollege",f:"Tom war bis vor drei Monaten dein Kollege. Im Teammeeting sagt er vor allen: „Früher hättest du das selbst nicht so gemacht.“ Seitdem kommt er zu Absprachen mit dir zu spät.",a:"Rollenkonflikt, mit Anteilen eines Beziehungskonflikts",b:"Selbstwert und Bindung: Tom hat einen Kollegen verloren und muss sich neu einordnen.",s:"Unter vier Augen ansprechen, die neue Rolle offen benennen und fragen, was er von dir braucht."},
+ {t:"Funkstille",f:"Seit einem Streit über eine verpatzte Übergabe gehen sich Lea und Jonas aus dem Weg. Informationen laufen nur noch über dich. Im Team wird schon getuschelt.",a:"Beziehungskonflikt, entstanden aus einem Sachkonflikt",b:"Selbstwert: Beide fühlen sich ungerecht beschuldigt.",s:"Erst einzeln sprechen, dann ein gemeinsames Gespräch moderieren. Nicht länger Bote spielen."},
+ {t:"Qualität oder Tempo",f:"Mara prüft jeden Bericht dreimal, bevor er rausgeht. Kai findet das übertrieben, der Kunde wartet. Beide kommen getrennt zu dir und wollen, dass du der anderen Person Bescheid sagst.",a:"Ziel- oder Wertekonflikt",b:"Kohärenz und Kontrolle: Beiden ist etwas anderes wichtig, beides ist berechtigt.",s:"Gemeinsam klären, was der Kunde wirklich braucht, und eine Regel vereinbaren, wann wie gründlich geprüft wird."},
+ {t:"Welche Zahlen gelten?",f:"Zwei Mitarbeitende streiten im Meeting, welche Zahlen in den Monatsbericht gehören: die aus dem alten System oder die aus dem neuen. Der Ton wird schärfer, die anderen schauen weg.",a:"Sachkonflikt",b:"Orientierung: Es ist unklar, was gilt.",s:"Die Frage klären oder klären lassen und festhalten, was ab jetzt gilt. Danach kurz nachfragen, wie es beiden mit dem Streit geht."},
+ {t:"Homeoffice",f:"Ein Teil des Teams ist fast immer im Homeoffice, andere sind jeden Tag vor Ort und fangen alles auf. In der Kaffeeküche fällt der Satz: „Die da zu Hause machen sich einen schönen Lenz.“",a:"Verteilungskonflikt mit Anteilen eines Beziehungskonflikts",b:"Fairness und Anerkennung: Wer vor Ort ist, fühlt sich nicht gesehen.",s:"Im Team offen ansprechen, Aufgaben vor Ort sichtbar machen und eine gemeinsame Regel vereinbaren."}];
+$('#faelle').innerHTML=FAELLE.map((c,i)=>`<div class="card fall"><span class="eyebrow">Fall ${i+1}</span><h3>${esc(c.t)}</h3><p>${esc(c.f)}</p><details><summary>Mögliche Auflösung zeigen</summary><div class="loes"><p style="margin:0 0 6px"><b>Konfliktart:</b> ${esc(c.a)}</p><p style="margin:0 0 6px"><b>Bedürfnis:</b> ${esc(c.b)}</p><p style="margin:0"><b>Erster Schritt:</b> ${esc(c.s)}</p></div></details></div>`).join('');
+
+/* ---------- Konflikte: Stil-Test ---------- */
+const STILE={
+ D:{t:"Durchsetzen",gut:"Du schaffst Klarheit und entscheidest, wenn es brennt.",falle:"Dein Team widerspricht irgendwann nicht mehr. Probleme kommen spät auf den Tisch.",tipp:"Erst fragen, dann entscheiden: „Wie siehst du das?“"},
+ K:{t:"Kooperieren",gut:"Ihr findet Lösungen, die wirklich tragen, weil beide Seiten gehört werden.",falle:"Das kostet Zeit. Nicht jede Kleinigkeit braucht eine große Runde.",tipp:"Bei kleinen Themen bewusst schneller entscheiden."},
+ M:{t:"Kompromiss",gut:"Du bringst Dinge schnell voran und hältst den Laden am Laufen.",falle:"Beide sind halb zufrieden. Das eigentliche Problem bleibt liegen.",tipp:"Vor dem Mittelweg fragen: „Worum geht es dir wirklich?“"},
+ N:{t:"Nachgeben",gut:"Du hältst Beziehungen und gönnst anderen etwas.",falle:"Deine Anliegen gehen unter. Dein Team weiß nicht, wofür du stehst.",tipp:"Sag in der nächsten Diskussion einmal klar, was dir wichtig ist."},
+ V:{t:"Vermeiden",gut:"Du gibst Hitzköpfen Zeit und wählst deine Kämpfe.",falle:"Konflikte wachsen im Verborgenen und kommen größer zurück.",tipp:"Ein Gespräch, das du gerade aufschiebst, in dieser Woche führen."}};
+const STILQ=[
+ ["D","Wenn ich überzeugt bin, kämpfe ich für meine Position."],
+ ["N","Ich stelle meine Wünsche zurück, damit die Stimmung gut bleibt."],
+ ["V","Unangenehme Themen schiebe ich gern auf."],
+ ["M","Ich schlage schnell einen Mittelweg vor, damit wir weiterkommen."],
+ ["K","Ich will verstehen, was der anderen Person wirklich wichtig ist."],
+ ["V","Ich hoffe oft, dass sich ein Konflikt von allein erledigt."],
+ ["D","In Diskussionen will ich am Ende recht behalten."],
+ ["K","Ich suche eine Lösung, mit der beide voll zufrieden sind, auch wenn es länger dauert."],
+ ["N","Ich gebe lieber nach, als jemanden zu verärgern."],
+ ["M","Jeder gibt ein bisschen nach. So löse ich die meisten Konflikte."],
+ ["D","Wenn es schnell gehen muss, entscheide ich und erkläre später."],
+ ["V","Wenn es Streit gibt, halte ich mich lieber raus."],
+ ["K","Ich lege meine Sicht offen auf den Tisch und frage nach der Sicht der anderen."],
+ ["N","Wenn jemand sehr betroffen ist, lasse ich meine eigene Sicht fallen."],
+ ["M","Ich bin zufrieden, wenn beide etwas bekommen, auch wenn keiner alles bekommt."]];
+function renderStil(){
+  const A=S.stil||(S.stil={});
+  $('#stiltest').innerHTML=STILQ.map(([k,q],i)=>`<div class="stq"><p>${i+1}. ${esc(q)}</p><div class="sc">${[1,2,3,4,5].map(v=>`<button type="button" data-q="${i}" data-v="${v}" class="${A[i]==v?'on':''}" aria-label="${v} von 5">${v}</button>`).join('')}</div><div class="lg"><span>trifft gar nicht zu</span><span>trifft voll zu</span></div></div>`).join('');
+  const n=Object.keys(A).length;
+  if(n<STILQ.length){ $('#stilres').innerHTML=`<div class="card lav"><p style="margin:0">Noch ${STILQ.length-n} von ${STILQ.length} Sätzen offen. Dann siehst du hier dein Ergebnis.</p>${n?'<button class="btn ghost small" id="stilDel" style="margin-top:10px">Antworten löschen</button>':''}</div>`; }
+  else {
+    const sum={};Object.keys(STILE).forEach(k=>sum[k]=0);STILQ.forEach(([k],i)=>sum[k]+=+A[i]);
+    const order=Object.keys(sum).sort((a,b)=>sum[b]-sum[a]);const max=sum[order[0]];
+    const tops=order.filter(k=>sum[k]===max);
+    $('#stilres').innerHTML=`<div class="card"><span class="eyebrow">Dein Ergebnis</span><h3>${tops.map(k=>STILE[k].t).join(' und ')}</h3>${order.map(k=>`<div class="bar ${sum[k]===max?'top':''}"><span>${STILE[k].t}</span><i><em style="width:${Math.round((sum[k]-3)/12*100)}%"></em></i><span>${sum[k]}</span></div>`).join('')}<p class="hint" style="margin-top:8px">Pro Stil sind 3 bis 15 Punkte möglich.</p></div>`+tops.map(k=>{const s=STILE[k];return `<div class="card lav"><span class="eyebrow">${esc(s.t)}</span><p><b>Das kann dein Stil:</b> ${esc(s.gut)}</p><p><b>Hier wird er zur Falle:</b> ${esc(s.falle)}</p><p style="margin:0"><b>Probier mal:</b> ${esc(s.tipp)}</p></div>`}).join('')+`<div class="task"><span class="eyebrow">Zum Nachdenken</span><b>Wann hilft dir dein Stil, wann steht er dir im Weg?</b><p style="margin:4px 0 0">Und welcher Weg fällt dir am schwersten? Genau den lohnt es sich zu üben.</p></div><button class="btn ghost small" id="stilDel">Antworten löschen</button><div style="height:12px"></div>`;
+  }
+  const del=$('#stilDel'); if(del) del.addEventListener('click',()=>{ S.stil={}; save(); renderStil(); toast('Gelöscht'); });
+}
+$('#stiltest').addEventListener('click',e=>{ const b=e.target.closest('[data-q]'); if(!b) return; (S.stil||(S.stil={}))[b.dataset.q]=+b.dataset.v; save(); const y=window.scrollY; renderStil(); window.scrollTo(0,y); });
+renderStil();
+
 /* ---------- Eingaben speichern ---------- */
 function bindInputs(root){
   root.querySelectorAll('[data-save]').forEach(el=>{
@@ -1128,6 +1302,7 @@ const SENT=[
  ["Kritik ansprechen",["Mir ist aufgefallen, dass … Wie siehst du das?","In den letzten zwei Wochen ist dreimal … passiert. Das hat dazu geführt, dass …","Ich habe beobachtet, dass … Bei mir kommt das so an: … Ich wünsche mir, dass …","Mir geht es nicht um Schuld. Mir geht es darum, wie wir das künftig lösen.","Ich schätze deine Arbeit bei … Genau deshalb spreche ich offen an, was mir bei … fehlt.","Was brauchst du, damit das ab jetzt klappt?"]],
  ["Wenn jemand nicht redet",["Mir fällt auf, dass du gerade sehr still bist. Ist etwas?","Ich weiß, dass … Mir ist wichtig, dass … Ich bin offen für …","Liegt es eher an der Aufgabe, an der Zusammenarbeit oder an etwas ganz anderem?","Du musst mir das nicht jetzt sagen. Lass uns am … noch einmal darüber sprechen.","Ich brauche von dir bis … eine klare Rückmeldung, ob das klappt.","Das freut mich. Mir ist trotzdem aufgefallen, dass … Darüber möchte ich mit dir sprechen.","Auf einer Skala von 1 bis 10: Wie zufrieden bist du selbst damit? Was fehlt zur 10?","Für dich ist es gut, für mich noch nicht. Ich erwarte, dass … Lass uns in zwei Wochen schauen, wie es läuft."]],
  ["Wenn es emotional wird",["Das ist wichtig. Was muss ich verstehen?","Ich merke, dass dich das sehr beschäftigt. Erzähl mir mehr.","Lass uns kurz durchatmen. Magst du einen Kaffee?","Wie sähe ein guter Weg für dich aus?"]],
+ ["Konflikte ansprechen",["Mir ist aufgefallen, dass es zwischen euch gerade hakt. Wie erlebst du das?","Ich möchte das ansprechen, solange es noch klein ist.","Was ist dir dabei besonders wichtig?","Wofür brauchst du das?","Ich höre zwei berechtigte Anliegen. Wie bekommen wir beide unter einen Hut?","Ich will nicht entscheiden, wer recht hat. Ich will, dass ihr wieder gut zusammenarbeitet."]],
  ["Erwartungen klären",["Mir ist in der Zusammenarbeit besonders wichtig, dass …","Was brauchst du von mir, damit du gut arbeiten kannst?","Was soll so bleiben, wie es ist? Was soll sich ändern?","Das weiß ich heute noch nicht. Ich sage dir bis … Bescheid."]],
  ["Vereinbaren und nachfassen",["Lass uns kurz festhalten: Du machst … bis … Ich mache …","Wann schauen wir wieder gemeinsam drauf?","Danke für das offene Gespräch gestern. Hier noch einmal kurz, was wir vereinbart haben: …"]]];
 $('#sentences').innerHTML = SENT.map(([t,arr])=>`<div class="card"><h3>${esc(t)}</h3>${arr.map(s=>`<div class="sent"><q>${esc(s)}</q><button class="btn ghost small" data-copy="${esc(s)}" aria-label="Kopieren">Kopieren</button></div>`).join('')}</div>`).join('');
